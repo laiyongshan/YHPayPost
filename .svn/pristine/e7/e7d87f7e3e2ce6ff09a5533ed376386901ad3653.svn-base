@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">智卡宝典</string>
+    <string name="app_version">智卡宝典 V%1$s</string>
+
+    <string name="PGYER_APPID">4e581cfca428410083c4008a5c3e0c95</string>
+    <string name="IDSECRET">24660073-1</string>
+    <string name="APPSECRET">d1afef85f1e107db37f135210756f4e6</string>
+    <string name="RSASECRET">MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCV6t3BtxUd1vNP6yVjEfvWYLeAmFwYF/o5J/xP9NqHbmMmPIMz3sxJqeAoGmdlpVO/tB2HDwqNIndWuKqgHTuqjl+ZIp7EQduLFQC0r5QEC6EchaOnuQCOxJ/aFKHv87/jIZhkQPh+CFY6s2Q+fcf6E/wuSkf2xVj+uSAhFAHP4O4YKiQ/0tSNO1lK3AfvQfxKkzyKp82rq/6n2IBFPJHB1J5pWH976Rl+dMLVEP7uXu/QrIqBfojPVASY6W2RFwGaZgFQ03gMZVzVMuGqhFHLhYYyzRcQdTnVCSNRcxYSwABJ8m0rFklckYLfwDCiHKBhN1c0OzPgw94gnb65AzLpAgMBAAECggEAD2UhBKWSa5AJSGmzWysbm3YvIeuDeY3syjXK+UMBteqmD+Ui7A6zF9V0CWo8t/l0Ujli1t26jae+bY9lJjAaUndwZb9iYnEI5I1xlxx4rLms/8rRdYXQAtk6OSDpSETVrbNjfNgXLIoaoMiPQMOV555pxS8nmLXHX9EO9ZaiYQBkp7y2UzgsKbpX3HPt5yCaZD/VCljryfFKCn9hMPcwmtEYmxqD53GCWAhT5LPIZeB5s7/2Whbnp5CbREnkoAc88zFfS/AWGLHD+x9ehgm5VHQ4QWL+n6OR2zNQJJx7C6xf1VayJMTX/ScU/3knk2crsZMlFQvT1e2tcvB7LydaSQKBgQD8oMPUYaRQjsnzeifX8r1hMhe9joU/qwXeAqCxiG8gPR/eb43gcsc6BLLRHSdzFEhpDBZ8NmhTOt7kJAJ/u7CAjVHjbHd/OP9MnWkId9foeiQ/54rdyp7D+R+1fMVJ1z7mdBGOh09NN3ZJpvvRgCds+nnTxV9ZiiZry5VsrjEoBwKBgQCX6yMiJedUrXo9Ae8OxsnHQ5wViPSZTiFzC5Bfk1NujRX/pRMpHhNtJh+FpkZRlvRiPgSrFipNrbSLKLRhBH9YGumSKhHLmy7OOaOYU5sDhQ22+ris9lRjMNh9IAw5BF7PD/s2TRZ09K4y9liHvJgxUaKOm/AhyL/bco2aZ9exjwKBgBPm6maR5qr+BMTsq7Tkh6zfkGU7lB3G8GhkFprF39NPXXJdoXS8NhvJAPlebZwwTeAQtrjEZIWiDqs0dwnvFGGcQIZFJkjciahUglDLeDP1Y2Oxbww4CTfxKWFX2gcOMQNgw31SBZpUsznsMMx5ZyG7vdtEIlXgf1Rgrn3oXzEDAoGAcrkUAA6lojGbNQUH1Z3S9NKexTh2lmsFIY7jCPoFsF+E9FhhntRikTOP7GrDgYvAo4v4FIcZjS2XQNuNVBKEZDF2n3V7mMlo0D2AyGCimEbbM4ok+iDPW1Sgt+UCtfAR9MY5zCjsw4efIUcdVeva9quSWaVy8uBZ2kuomai/nwsCgYAzTjawdy/uyjrHZehNfKhp6uqkOkhtPgt2hJWWNH2Lbv1Xv7noBe5GS+8akQh5uZJJfknqOgMvuIU7PnjjMGpt/yhzhtmGvx9Dw5n85PHvHcREnJZIKHtjw70kBgrlo/gcKYEIqiE28ZKz5LXdsvKdwifgWndLSTEFPEFWFNfPRw==</string>
+
+    <string name="upload_photos_tips">如您在上传照片时出现问题或者疑问，可拨打</string>
+    <string name="protocol_name">《智卡宝典用户协议》</string>
+    <string name="hotline_no">客服电话：400-0722227</string>
+    <string name="kefu_no">400-0722227</string>
+    <string name="kefu">4000722227</string>
+    <string name="change_pwd_tips">如有疑问，请致电客服</string>
+    <string name="protocol_titie">智卡宝典使用协议</string>
+    <string name="avl_withdraw_amt">可提现金额: %1$s元</string>
+    <string name="about_company">\t\t\t\t智卡宝典是针对信用卡卡友们专门设计的一套智能信用卡代还系统，主要解决信用卡卡友们还款难、管理难的问题。</string>
+    <string name="about_copyright">\@2017 智卡宝典 copyright</string>
+
+    <!--关于我们-->
+    <string name="about_us">关于我们</string>
+    <string name="update_version">版本更新</string>
+    <string name="update_later">稍后更新</string>
+    <string name="update_now">立即更新</string>
+    <string name="is_the_latest_version">当前已是最新版本</string>
+
+
+    <string name="errcode_success">分享成功</string>
+    <string name="errcode_cancel">分享取消</string>
+    <string name="errcode_deny">分享被拒绝</string>
+    <string name="errcode_unknown">分享返回</string>
+
+    <string name="invite_you">%1$s邀您加入%2$s微创业平台</string>
+    <string name="day_profit">昨日收益%1$s元</string>
+
+    <string name="merchlevel_tips">提示：你还需邀请%1$s个人注册即可升级为%2$s</string>
+    <string name="title_activity_set_plan_card">SetPlanCardActivity</string>
+
+    <string name="empty_view_hint">暂无数据</string>
+    <string name="error_view_hint">加载失败</string>
+    <string name="no_network_view_hint">网络异常</string>
+
+
+</resources>

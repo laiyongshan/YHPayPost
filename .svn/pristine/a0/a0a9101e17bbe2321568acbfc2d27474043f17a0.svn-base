@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.MerchLevelActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <cn.droidlover.xstatecontroller.XStateController
+        android:id="@+id/merchlevel_controller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/theme"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/merchlevel_level_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="等级：黄金"
+                    android:textColor="@color/text_white" />
+
+                <TextView
+                    android:id="@+id/merchlevel_profit_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="累计收益：0元"
+                    android:textColor="@color/text_white" />
+
+                <TextView
+                    android:id="@+id/merchlevel_time_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="加入时间：2017-01-01"
+                    android:textColor="@color/text_white" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/merchlevel_update_bt"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:text="升级享更多收益"
+                    android:textColor="@color/text_blue"
+                    android:visibility="gone"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p"
+                    app:radius="5dp" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_tip_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="小贴士：了解等级规则请点击右上角创业规则详细查看"
+                android:textColor="@color/text_6" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/merchlevel_level1_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:src="@mipmap/icon_level1" />
+
+                    <TextView
+                        android:id="@+id/merchlevel_level1_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="0个" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/merchlevel_level2_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:src="@mipmap/icon_level2" />
+
+                    <TextView
+                        android:id="@+id/merchlevel_level2_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="0个" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/merchlevel_level3_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:src="@mipmap/icon_level3" />
+
+                    <TextView
+                        android:id="@+id/merchlevel_level3_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="0个" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/merchlevel_tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_white"
+                app:tabIndicatorColor="@color/text_blue"
+                app:tabSelectedTextColor="@color/text_blue"
+                app:tabTextColor="@color/text_tip" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/merchlevel_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@color/bg_white"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </LinearLayout>
+    </cn.droidlover.xstatecontroller.XStateController>
+</LinearLayout>

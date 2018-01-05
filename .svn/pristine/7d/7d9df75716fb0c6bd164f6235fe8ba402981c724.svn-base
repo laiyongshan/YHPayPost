@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_white"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.PlanCardActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:foreground="@drawable/selector_foreground"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/bank_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bankcard_blue"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:id="@+id/bank_iv"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/circle_bg"
+                    android:padding="4dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/bank" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/quickpay" />
+
+                <TextView
+                    android:id="@+id/card_bankname_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/bank_iv"
+                    android:text="中国银行"
+                    android:textColor="@color/bg_white"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:id="@+id/card_banktype_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_bankname_tv"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@+id/bank_iv"
+                    android:text="储蓄卡"
+                    android:textColor="@color/bg_white"
+                    android:textSize="@dimen/text_sub" />
+
+                <TextView
+                    android:id="@+id/card_acctno_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/card_bankname_tv"
+                    android:layout_alignStart="@+id/card_bankname_tv"
+                    android:layout_below="@+id/card_banktype_tv"
+                    android:layout_marginTop="8dp"
+                    android:text="5454646464646464656546"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_big" />
+
+                <TextView
+                    android:id="@+id/card_payday_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/card_bankname_tv"
+                    android:layout_alignStart="@+id/card_bankname_tv"
+                    android:layout_below="@+id/card_acctno_tv"
+                    android:layout_marginTop="8dp"
+                    android:text="账单日：09日"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_sub" />
+
+                <TextView
+                    android:id="@+id/card_repayday_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_acctno_tv"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/card_payday_tv"
+                    android:text="还款日：19日"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_sub" />
+
+                <TextView
+                    android:id="@+id/card_limit_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_acctno_tv"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/card_repayday_tv"
+                    android:text="额度：0元"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_sub" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@color/line_gray" />
+
+            <TextView
+                style="@style/text_normal_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="我的还款计划"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@color/line_gray" />
+
+        </LinearLayout>
+
+
+        <com.yzf.Cpaypos.widget.MultipleStatusView
+            android:id="@+id/card_multiplestatusview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            app:emptyView="@layout/custom_empty_view"
+            app:errorView="@layout/custom_error_view"
+            app:loadingView="@layout/custom_loading_view"
+            app:noNetworkView="@layout/custom_no_network_view">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/card_swiperefreshlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <cn.droidlover.xrecyclerview.XRecyclerView
+                    android:id="@+id/plancard_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:recyclerBackgroundColor="@color/bg_white"
+                    app:recyclerScrollbarNone="true"
+                    app:recyclerScrollbarStyle="outsideOverlay" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </com.yzf.Cpaypos.widget.MultipleStatusView>
+
+
+        <com.yzf.Cpaypos.widget.StateButton
+            android:id="@+id/plancard_add_bt"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8dp"
+            android:text="新增计划"
+            app:normalBackgroundColor="@color/theme"
+            app:pressedBackgroundColor="@color/light_theme"
+            app:radius="5dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

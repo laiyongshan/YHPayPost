@@ -1,0 +1,229 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_toolbar" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/fmtrans_swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="@mipmap/trans_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/text_tip_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="总资产(元)"
+                    android:textColor="@color/text_white" />
+
+                <TextView
+                    android:id="@+id/fmtrans_totalamt_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_32" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_weight="1"
+                            android:foreground="@drawable/selector_foreground"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/text_normal_color_6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/text_white"
+                                android:textSize="@dimen/text_tip"
+                                android:text="账户余额(元)" />
+
+
+                            <TextView
+                                android:id="@+id/fmtrans_avlamt_tv"
+                                style="@style/text_normal_color_6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="8dp"
+                                android:text="0.00"
+                                android:textColor="@color/text_white"  />
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_weight="1"
+                            android:foreground="@drawable/selector_foreground"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/text_normal_color_6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/text_white"
+                                android:textSize="@dimen/text_tip"
+                                android:text="冻结金额(元)" />
+
+
+                            <TextView
+                                android:id="@+id/fmtrans_fznamt_tv"
+                                style="@style/text_normal_color_6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="8dp"
+                                android:textColor="@color/text_white"
+                                android:text="0.00" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:layout_marginTop="10dp"
+                android:divider="@drawable/divider_horizontal"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <LinearLayout
+                    android:id="@+id/fmtrans_withdrw_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/withdraw" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="提现" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fmtrans_trans_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/trans" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="交易查询" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fmtrans_fee_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/fee" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="费率查询" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

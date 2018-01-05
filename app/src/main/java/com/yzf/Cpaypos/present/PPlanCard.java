@@ -1,0 +1,132 @@
+package com.yzf.Cpaypos.present;
+
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.model.servicesmodels.BaseResults;
+import com.yzf.Cpaypos.model.servicesmodels.GetPlanCardResults;
+import com.yzf.Cpaypos.model.servicesmodels.GetPreviewPlanResult;
+import com.yzf.Cpaypos.net.Api;
+import com.yzf.Cpaypos.ui.activitys.PlanCardActivity;
+
+import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.net.ApiSubcriber;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.net.XApi;
+
+/**
+ * ClaseName：PBindCard
+ * Description：绑卡逻辑
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/4/1 14:31
+ * Modified By：
+ * Fixtime：2017/4/1 14:31
+ * FixDescription：
+ */
+
+public class PPlanCard extends XPresent<PlanCardActivity> {
+    /**
+     * 绑定银行卡
+     *
+     * @param merchId
+     * @param cardId
+     */
+    public void GetPlanCard(final int page, String merchId, String cardId, int pageNum, String beginTime, String endTime,String status) {
+        if (AppTools.isEmpty(merchId)) {
+            getV().showToast("商户号为空");
+            return;
+        }
+        Api.getAPPService().GetPlanCard(merchId, cardId,page,pageNum,beginTime,endTime,status)
+                .compose(XApi.<GetPlanCardResults>getApiTransformer())
+                .compose(XApi.<GetPlanCardResults>getScheduler())
+                .compose(getV().<GetPlanCardResults>bindToLifecycle())
+                .subscribe(new ApiSubcriber<GetPlanCardResults>() {
+                    @Override
+                    public void onNext(GetPlanCardResults getPlanCardResults) {
+                        if (getPlanCardResults.getRespCode().equals("00")) {
+                            getV().setAdapter(getPlanCardResults,page);//绑卡成功后返回前一个页面
+                        } else {
+                            getV().showErrorView(getPlanCardResults.getRespMsg());
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showError(error);
+                    }
+
+                });
+    }
+
+    /**
+     * 获取预览规划
+     */
+    public void getPreviewPlan(String merchId,String cardId) {
+        Api.getAPPService().getPreviewPlan(merchId,cardId)
+                .compose(XApi.<GetPreviewPlanResult>getApiTransformer())
+                .compose(XApi.<GetPreviewPlanResult>getScheduler())
+                .compose(getV().<GetPreviewPlanResult>bindToLifecycle())
+                .subscribe(new ApiSubcriber<GetPreviewPlanResult>() {
+                    @Override
+                    public void onNext(GetPreviewPlanResult getPreviewPlanResult) {
+                        if (getPreviewPlanResult.getRespCode().equals("00")) {
+                            getV().setPreviewPlan(getPreviewPlanResult,true);
+                        }else {
+                            getV().setPreviewPlan(getPreviewPlanResult,false);
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showError(error);
+                    }
+
+                });
+    }
+
+    /**
+     * 养卡规划删除
+     *
+     * @param merchId
+     * @param cardId
+     * @param orderId
+     */
+    public void ConfirmPlanCard(String merchId, String cardId, String orderId, final String confirmType ) {
+        if (AppTools.isEmpty(merchId)) {
+            getV().showToast("商户号为空");
+            return;
+        }
+        if (AppTools.isEmpty(cardId)) {
+            getV().showToast("卡号为空");
+            return;
+        }
+        if (AppTools.isEmpty(orderId)) {
+            getV().showToast("规划单号为空");
+            return;
+        }if (AppTools.isEmpty(confirmType)) {
+            getV().showToast("确认类型为空");
+            return;
+        }
+
+        Api.getAPPService().PayPlanCard(merchId, cardId, orderId,confirmType,"")
+                .compose(XApi.<BaseResults>getApiTransformer())
+                .compose(XApi.<BaseResults>getScheduler())
+                .compose(getV().<BaseResults>bindToLifecycle())
+                .subscribe(new ApiSubcriber<BaseResults>() {
+                    @Override
+                    public void onNext(BaseResults baseResults) {
+                        if (baseResults.getRespCode().equals("00")) {
+                            getV().refresh(baseResults.getRespMsg(),confirmType);
+                        }else {
+                            getV().showToast(baseResults.getRespMsg());
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showError(error);
+                    }
+
+                });
+    }
+
+}

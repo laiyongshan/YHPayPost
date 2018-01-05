@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:qinc="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.RepaymentActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:divider="@drawable/divider_horizontal"
+            android:dividerPadding="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:showDividers="middle">
+
+            <RelativeLayout
+                android:id="@+id/repayment_type_rl"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="还款模式:" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/repayment_type_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:minWidth="140dp"
+                    android:spinnerMode="dialog" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/repayment_date_rl"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="还款时间:" />
+
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/repayment_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:gravity="center|right"
+                    android:hint="选择还款日期"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:maxWidth="220dp"
+                    android:textSize="@dimen/text_normal" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/row" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/repayment_amount_rl"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="还款金额:"
+                    android:textColor="@color/text_6" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/repayment_amount_et"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@null"
+                    android:gravity="center|right"
+                    android:hint="金额范围1,000~100,000"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/repayment_scale_rl"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="还款比例:" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/repayment_scale_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right|center"
+                    android:minWidth="140dp"
+                    android:spinnerMode="dialog" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/repayment_balance_rl"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/text_normal_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="卡内余额:"
+                    android:textColor="@color/text_6" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/repayment_balance_et"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@null"
+                    android:gravity="center|right"
+                    android:hint="信用卡可用余额"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_normal" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/repayment_count_rl"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="拆分笔数:"
+                    android:textColor="@color/text_6" />
+
+                <ren.qinc.numberbutton.NumberButton
+                    android:id="@+id/repayment_count_bt"
+                    android:layout_width="120dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    qinc:editable="false" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/repayment_times_rl"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="还款月数:"
+                    android:textColor="@color/text_6" />
+
+                <ren.qinc.numberbutton.NumberButton
+                    android:id="@+id/repayment_times_bt"
+                    android:layout_width="120dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    qinc:editable="false" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/text_tip_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="提示：拆分笔数不大于还款天数的3倍"
+            android:textColor="@color/text_red"
+            android:textSize="@dimen/text_sub"
+            android:visibility="gone" />
+
+        <com.yzf.Cpaypos.widget.StateButton
+            android:id="@+id/repayment_confirm_bt"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:text="预览计划"
+            app:normalBackgroundColor="@color/theme"
+            app:pressedBackgroundColor="@color/light_theme"
+            app:radius="5dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/repayment_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:recyclerScrollbarNone="true"
+                app:recyclerScrollbarStyle="outsideOverlay" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

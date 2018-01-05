@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:foreground="@drawable/selector_foreground">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/merchfee_type_adapter"
+            style="@style/text_title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="业务类型：代付" />
+
+        <TextView
+            android:id="@+id/merchfee_fee_adapter"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="费率：0.5" />
+
+        <TextView
+            android:id="@+id/merchfee_feetype_adapter"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="费率类型：按笔" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,311 @@
+package com.yzf.Cpaypos.ui.fragments;
+
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+//import com.tencent.mm.sdk.openapi.IWXAPI;
+//import com.tencent.mm.sdk.openapi.SendMessageToWX;
+//import com.tencent.mm.sdk.openapi.WXAPIFactory;
+//import com.tencent.mm.sdk.openapi.WXMediaMessage;
+//import com.tencent.mm.sdk.openapi.WXWebpageObject;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.kit.AppConfig;
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.model.servicesmodels.GetProfitResult;
+import com.yzf.Cpaypos.present.PFissionFragment;
+import com.yzf.Cpaypos.ui.activitys.MerchLevelActivity;
+import com.yzf.Cpaypos.ui.activitys.ShareActivity;
+import com.yzf.Cpaypos.ui.activitys.SubMerchActivity;
+import com.yzf.Cpaypos.ui.activitys.UploadDataActivity;
+import com.yzf.Cpaypos.ui.activitys.UploadPhotosActivity;
+import com.yzf.Cpaypos.widget.StateButton;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.mvp.XFragment;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.router.Router;
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：FissionFragment
+ * Description: 微创业页面
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/5/18 11:55
+ * Modified By：
+ * Fixtime：2017/5/18 11:55
+ * FixDescription：
+ */
+
+public class FissionFragment extends XFragment<PFissionFragment> {
+
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.fmfission_totalamt_tv)
+    TextView fmfissionTotalamtTv;
+    @BindView(R.id.fmfission_dayamt_tv)
+    TextView fmfissionDayamtTv;
+    @BindView(R.id.fission_withdraw_bt)
+    StateButton fissionWithdrawBt;
+    @BindView(R.id.fission_levl_tv)
+    TextView fissionLevlTv;
+    @BindView(R.id.fission_levl_rl)
+    RelativeLayout fissionLevlRl;
+    @BindView(R.id.fission_amout_tv)
+    TextView fissionAmoutTv;
+    @BindView(R.id.fission_amout_rl)
+    RelativeLayout fissionAmoutRl;
+    @BindView(R.id.fission_tips_tv)
+    TextView fissionTipsTv;
+    @BindView(R.id.fission_weixin_ll)
+    LinearLayout fissionWeixinLl;
+    @BindView(R.id.fission_lintimes_ll)
+    LinearLayout fissionLintimesLl;
+    @BindView(R.id.fission_qrcode_ll)
+    LinearLayout fissionQrcodeLl;
+    @BindView(R.id.fmfission_swipe_container)
+    SwipeRefreshLayout fmfissionSwipeContainer;
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        initView();
+        getP().getProfit(AppUser.getInstance().getUserId());
+        fmfissionSwipeContainer.setColorSchemeColors(getResources().getColor(R.color.theme));
+        fmfissionSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getP().getProfit(AppUser.getInstance().getUserId());
+            }
+        });
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_fission;
+    }
+
+    @Override
+    public PFissionFragment newP() {
+        return new PFissionFragment();
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initView() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        title.setText("累计收益");
+    }
+
+
+    /**
+     * activity跳转
+     */
+    public void JumpActivity(Class<?> activity, boolean isfinish) {
+        Router.newIntent(context)
+                .to(activity)
+                .launch();
+        if (isfinish) {
+            Router.pop(context);
+        }
+    }
+
+    public void JumpActivity(Class<?> activity, String serviceId) {
+        Router.newIntent(context)
+                .to(activity)
+                .putString("serviceId", serviceId)
+                .launch();
+    }
+
+    /**
+     * 显示Toast
+     *
+     * @param msg
+     */
+    public void showToast(String msg) {
+        getvDelegate().toastShort(msg);
+    }
+
+    public void JumpActivity(Class<?> activity) {
+        Router.newIntent(context)
+                .to(activity)
+                .launch();
+    }
+
+    /**
+     * 显示单按钮对话框
+     *
+     * @param msg
+     */
+    public void showErrorDialog(String msg) {
+        getvDelegate().showErrorDialog(msg);
+    }
+
+    /**
+     * 显示双按钮对话框
+     *
+     * @param msg
+     * @param callback
+     */
+    public void showNoticeDialog(String msg, MaterialDialog.SingleButtonCallback callback) {
+        getvDelegate().showNoticeDialog(msg, callback);
+    }
+
+    /**
+     * 显示错误信息
+     *
+     * @param error
+     */
+    public void showError(NetError error) {
+        fmfissionSwipeContainer.setRefreshing(false);
+        getvDelegate().showError(error);
+    }
+
+
+    /**
+     * 根据state判断用户状态
+     *
+     * @param state 用户状态
+     * @return 已实名认证后返回true
+     */
+    private boolean isVerifyPass(String state) {
+        if (state.equals("03")) {
+            JumpActivity(UploadDataActivity.class);
+            return false;
+        } else if (state.equals("02")) {//{"message":"商户未上传照片","status":100,"state":"3","storeId":null}
+            JumpActivity(UploadPhotosActivity.class);
+            return false;
+        } else if (state.equals("01")) {//资料未通过
+            JumpActivity(UploadDataActivity.class);
+            return false;
+        } else {//资料未通过
+            JumpActivity(UploadDataActivity.class);
+            return false;
+        }
+    }
+
+    /**
+     * 微信分享
+     *
+     * @param flag (0:分享到微信好友，1：分享到微信朋友圈)
+     */
+    private void wechatShare(int flag) {
+        IWXAPI wxApi = WXAPIFactory.createWXAPI(context, AppConfig.APP_ID);
+        wxApi.registerApp(AppConfig.APP_ID);
+        WXWebpageObject webpage = new WXWebpageObject();
+        webpage.webpageUrl = AppTools.getWxUrl(AppUser.getInstance().getUserId(), AppUser.getInstance().getBranchNo());
+        WXMediaMessage msg = new WXMediaMessage(webpage);
+        msg.title = String.format(getResources().getString(R.string.invite_you), AppUser.getInstance().getMerchName(), getResources().getString(R.string.app_name));
+        msg.description = "费率低、到账快，推荐即可得分润，真正创业0投入";
+//        这里替换一张自己工程里的图片资源
+        BitmapDrawable bmpDraw = (BitmapDrawable) context.getResources().getDrawable(
+                R.mipmap.ic_launcher);
+        Bitmap thumb = bmpDraw.getBitmap();
+        msg.setThumbImage(thumb);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = String.valueOf(System.currentTimeMillis());
+        req.message = msg;
+        req.scene = flag == 0 ? SendMessageToWX.Req.WXSceneSession
+                : SendMessageToWX.Req.WXSceneTimeline;
+        wxApi.sendReq(req);
+    }
+
+
+    public void setProfitInfo(GetProfitResult getProfitResult) {
+        fmfissionSwipeContainer.setRefreshing(false);
+//        String amt=AppTools.formatAmt(getProfitResult.getData().getProfitAmt());
+        String amt = getProfitResult.getData().getSumSyAmt();
+        fmfissionTotalamtTv.setText(amt + "元");
+        fmfissionDayamtTv.setText(String.format(getResources().getString(R.string.day_profit), getProfitResult.getData().getYesterdayAmt()));
+        fissionAmoutTv.setText(getProfitResult.getData().getSonMerchNum());
+        fissionLevlTv.setText(getLevel(getProfitResult.getData().getMerchLevel()));
+        fissionTipsTv.setText(getProfitResult.getData().getTips());
+    }
+
+    private String getLevel(String level) {
+        if (!AppTools.isEmpty(level)) {
+            if (level.equals("1")) {
+                level = "黄金";
+            } else if (level.equals("2")) {
+                level = "铂金";
+            } else if (level.equals("3")) {
+                level = "钻石";
+            } else if (level.equals("4")) {
+                level = "合伙人";
+            }
+        }
+        return level;
+    }
+
+    @OnClick({R.id.fission_withdraw_bt, R.id.fission_levl_rl, R.id.fission_amout_rl, R.id.fission_weixin_ll, R.id.fission_lintimes_ll, R.id.fission_qrcode_ll})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fission_withdraw_bt:
+                getP().toWithDraw(AppUser.getInstance().getStatus());
+                break;
+            case R.id.fission_levl_rl:
+                JumpActivity(MerchLevelActivity.class);
+                break;
+            case R.id.fission_amout_rl:
+                JumpActivity(SubMerchActivity.class);
+                break;
+            case R.id.fission_weixin_ll:
+                wechatShare(0);
+                break;
+            case R.id.fission_lintimes_ll:
+                wechatShare(1);
+                break;
+            case R.id.fission_qrcode_ll:
+                JumpActivity(ShareActivity.class);
+                break;
+        }
+    }
+}

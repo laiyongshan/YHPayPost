@@ -1,0 +1,468 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+    <!--
+        <include layout="@layout/title_toolbar"/>-->
+
+    <RelativeLayout
+        android:id="@+id/fmperson_name_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/fmperson_head_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/circle_bg"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/t75" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/fmperson_head_iv"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fmperson_name_tv"
+                style="@style/text_normal_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11111"
+                android:textColor="@color/text_white" />
+
+            <TextView
+                android:id="@+id/fmperson_status_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="状态"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/text_tip" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:src="@mipmap/icon_next_white" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@color/bg_white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/fmperson_billing_rl"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:foreground="@drawable/selector_foreground"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/icon_billing" />
+
+
+                <TextView
+                    android:id="@+id/fission_levl_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="账单" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="40dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center"
+                android:background="@color/line_gray" />
+
+            <LinearLayout
+                android:id="@+id/fmperson_bankcard_rl"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:foreground="@drawable/selector_foreground"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_cards" />
+
+
+                <TextView
+                    android:id="@+id/fission_amout_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="卡管理" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:divider="@drawable/divider_horizontal"
+                android:dividerPadding="5dp"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <LinearLayout
+                    android:id="@+id/fmperson_verify_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_open" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="实名认证" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fmperson_settlecard_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_modify" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="修改结算卡" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fmperson_psw_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitCenter"
+                        android:background="@mipmap/icon_password" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="修改密码" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fmperson_contract_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_phone" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="联系我们" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fmperson_about_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_about" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="关于我们" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fmperson_update_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_update" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="检查更新" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fmperson_help_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_help" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="帮助中心" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fmperson_share_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_share" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="下载分享" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fmperson_planCard_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_open" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="开通规划" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fmperson_exit_ll"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_white"
+                android:foreground="@drawable/selector_foreground"
+                android:gravity="center">
+
+
+                <TextView
+                    style="@style/text_theme_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="注销登录" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

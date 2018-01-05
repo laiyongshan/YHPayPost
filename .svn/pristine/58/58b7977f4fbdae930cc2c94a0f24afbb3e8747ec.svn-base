@@ -1,0 +1,224 @@
+package com.yzf.Cpaypos.ui.activitys;
+
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.model.servicesmodels.GetMerchInfoResult;
+import com.yzf.Cpaypos.present.PMerchInfo;
+import com.yzf.Cpaypos.widget.StateView;
+
+import butterknife.BindView;
+import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.router.Router;
+import cn.droidlover.xstatecontroller.XStateController;
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：MerchInfoActivity
+ * Description: 商户信息界面
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/3/31 16:39
+ * Modified By：
+ * Fixtime：2017/3/31 16:39
+ * FixDescription：
+ */
+public class MerchInfoActivity extends XActivity<PMerchInfo> {
+
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.merchinfo_name_tv)
+    TextView merchinfoNameTv;
+    @BindView(R.id.merchinfo_status_tv)
+    TextView merchinfoStatusTv;
+    @BindView(R.id.merchinfo_idcard_tv)
+    TextView merchinfoIdcardTv;
+    @BindView(R.id.merchinfo_phone_tv)
+    TextView merchinfoPhoneTv;
+    @BindView(R.id.merchinfo_acctno_tv)
+    TextView merchinfoAcctnoTv;
+    @BindView(R.id.merchinfo_acctbank_tv)
+    TextView merchinfoAcctbankTv;
+    @BindView(R.id.merchinfo_acctname_tv)
+    TextView merchinfoAcctnameTv;
+    @BindView(R.id.merchinfo_controller)
+    XStateController controller;
+    StateView errorView;
+
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        initView();
+        if (savedInstanceState == null) {
+            controller.showLoading();
+        }
+        getP().getMerchInfo(AppUser.getInstance().getUserId());
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_merch_info;
+    }
+
+    @Override
+    public PMerchInfo newP() {
+        return new PMerchInfo();
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initView() {
+        initToolbar();
+        controller.loadingView(View.inflate(this, R.layout.view_loading, null));
+        if (errorView == null) {
+            errorView = new StateView(context);
+        }
+        controller.errorView(errorView);
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        title.setText("商户信息");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public int getOptionsMenuId() {
+        return R.menu.menu_settlecard;
+    }
+
+    /**
+     * 标题栏监听
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                finish();
+                break;
+            case R.id.menu_text:
+                JumpActivity(ModifiedSettleCardctivity.class, true);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * activity跳转
+     */
+    public void JumpActivity(Class<?> activity, boolean isfinish) {
+        getvDelegate().dismissLoading();
+        Router.newIntent(context)
+                .to(activity)
+                .launch();
+        if (isfinish) {
+            Router.pop(context);
+        }
+    }
+
+    /**
+     * 显示Toast
+     *
+     * @param msg
+     */
+    public void showToast(String msg) {
+        getvDelegate().toastShort(msg);
+    }
+
+    /**
+     * 显示单按钮对话框
+     *
+     * @param msg
+     */
+    public void showErrorDialog(String msg) {
+        getvDelegate().showErrorDialog(msg);
+    }
+
+    /**
+     * 显示错误信息
+     *
+     * @param error
+     */
+    public void showError(NetError error) {
+        getvDelegate().showError(error);
+    }
+
+    public void showErrorView(String msg, int id) {
+        errorView.setMsg(msg);
+        errorView.setImg(id);
+        controller.showError();
+    }
+
+    public void showErrorView(NetError error, int id) {
+        errorView.setMsg(getvDelegate().getErrorType(error));
+        errorView.setImg(id);
+        controller.showError();
+    }
+
+    public void setMerchInfo(GetMerchInfoResult getMerchInfoResult) {
+//        getvDelegate().dismissLoading();
+        controller.showContent();
+        merchinfoNameTv.setText("商户名称：" + getMerchInfoResult.getData().getMerchName());
+        merchinfoStatusTv.setText("商户状态：" + getMerchInfoResult.getData().getMerchStatus());
+        String idcard = getMerchInfoResult.getData().getIdCard();
+        idcard = AppTools.isEmpty(idcard) ? "" : idcard.substring(0, 4) + "****" + idcard.substring(idcard.length() - 4, idcard.length());
+        merchinfoIdcardTv.setText("身份证号：" + idcard);
+        String phone = getMerchInfoResult.getData().getPhoneNo();
+        phone = AppTools.isEmpty(phone) ? "" : phone.substring(0, 4) + "****" + phone.substring(phone.length() - 4, phone.length());
+        merchinfoPhoneTv.setText("手机号码：" + phone);
+        String acctno = getMerchInfoResult.getData().getAcctNo();
+        acctno = AppTools.isEmpty(acctno) ? "" : acctno.substring(0, 4) + "****" + acctno.substring(acctno.length() - 4, acctno.length());
+        merchinfoAcctnoTv.setText("结算卡号：" + acctno);
+        merchinfoAcctbankTv.setText("结算银行：" + getMerchInfoResult.getData().getBankName());
+        String AcctName = getMerchInfoResult.getData().getAcctName();
+        AcctName = AppTools.isEmpty(AcctName) ? "" : "*" + AcctName.substring(1, AcctName.length());
+        merchinfoAcctnameTv.setText("开户账号：" + AcctName);
+    }
+}

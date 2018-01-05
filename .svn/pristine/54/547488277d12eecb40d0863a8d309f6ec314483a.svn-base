@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+//apply from: 'tinker-support.gradle'
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId 'com.yzf.Cpaypos'
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        /* ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }*/
+    }
+
+    signingConfigs { //gradle assembleRelease
+        release {
+            storeFile file("D:\\project\\yishuakey\\Fpayposkey")
+            keyAlias "fpayposkey"
+            keyPassword 'yzf123488'
+            storePassword 'yzf123488'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            //自定义输出配置
+            android.applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = outputFile.name.replace("app",
+                                "Cpaypos_${defaultConfig.versionName}_${buildTime()}")
+                        outputFileName = fileName
+
+                    }
+                }
+            }
+        }
+
+        /* release {
+             signingConfig signingConfigs.release
+             minifyEnabled false
+             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+             applicationVariants.all { variant ->
+                 variant.outputs.all { output ->
+                     if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
+                             && 'release' == variant.buildType.name) {
+                         def apkFile = new File(
+                                 output.outputFile.getParent(),
+                                 "CPaypos_${variant.flavorName}_v${variant.versionName}_${buildTime()}.apk")
+                         *//*def apkFile = new File(
+                                 output.outputFile.getParent(),
+                                 "app-${variant.flavorName}-release.apk")*//*
+                         outputFileName  = apkFile
+                     }
+                 }
+             }
+         }*/
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        pgyer {}
+    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+}
+
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':library')
+    annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
+    compile rootProject.ext.dependencies["greendao"]
+    compile 'com.aliyun.ams:alicloud-android-hotfix:3.1.3'
+    //    compile 'com.github.vlonjatg:progress-activity:v2.0.3'
+    //    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //    compile 'com.tencent.bugly:crashreport_upgrade:1.3.1'
+    //    compile "com.android.support:multidex:1.0.1"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.pgyersdk:sdk:2.5.6'
+    compile 'com.xw.repo:xedittext:1.0.6@aar'
+    compile 'cn.yipianfengye.android:zxing-library:2.2'
+    compile 'com.android.support:cardview-v7:25.2.0'
+    compile 'com.github.razerdp:BasePopup:v1.6.2'
+    compile 'com.wdullaer:materialdatetimepicker:3.1.3'
+    compile 'com.bigkoo:convenientbanner:2.0.5'
+    compile 'com.zxy.android:recovery:0.1.4'
+    compile 'ren.qinc.numberbutton:numberbutton:0.0.1'
+    //    compile 'com.zhy:flowlayout-lib:1.0.3'
+    compile 'com.github.mcxtzhang:NestFullListView:V1.0.0'
+    compile 'com.just.agentweb:agentweb:2.0.1'
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    androidTestCompile 'com.android.support:support-annotations:25.2.0'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+}

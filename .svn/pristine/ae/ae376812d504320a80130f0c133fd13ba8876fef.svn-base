@@ -1,0 +1,307 @@
+package com.yzf.Cpaypos.kit;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.yzf.Cpaypos.kit.db.ParamDao;
+import com.yzf.Cpaypos.model.servicesmodels.GetWhiteCardListResult;
+import com.yzf.Cpaypos.model.servicesmodels.LoginResult;
+
+import java.util.List;
+
+/**
+ * ClaseName：AppUser
+ * Description：全局的单例用户
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/2/27 17:04
+ * Modified By：
+ * Fixtime：2017/2/27 17:04
+ * FixDescription：
+ */
+
+
+public class AppUser {
+
+    /**
+     * 内部类实现单例模式
+     * 延迟加载，减少内存开销
+     *
+     * @author xuzhaohu
+     */
+    private String userId;//商户号
+    private String status;//商户状态
+    private String beginTime;//每日开始交易时间
+    private String endTime;//每日结束交易时间
+    private String key;//商户秘钥
+    private String minAmt;//最小交易金额
+    private String maxAmt;//最大交易金额
+    private String serviceList;//支持交易类型
+    private String AMT;//交易金额
+    private String orderId;//订单号
+    private String AVL_AMT;//刷卡余额
+    private String SY_AMT;//收益余额
+    private String branchNo;//代理商编号
+    private String merchName;//商户名称
+    private String fee;//代付费率
+    private String planCardStatus;//卡规划开通状态
+    private String cardWhiteInfo;//白名单卡信息
+    private List<GetWhiteCardListResult.DataBean> cList;//白名单卡列表
+    private ParamDao paramDao;
+    private List<LoginResult.DataBean.ServiceListBean> sList;//支持交易类型
+
+    private static class SingletonHolder {
+        private static AppUser instance = new AppUser();
+    }
+
+    /**
+     * 私有的构造函数
+     */
+    private AppUser() {
+
+    }
+
+    public static AppUser getInstance() {
+        return SingletonHolder.instance;
+    }
+
+    public ParamDao getParamDao() {
+        if (paramDao == null) {
+            paramDao = new ParamDao();
+        }
+        return paramDao;
+    }
+
+    public void setUserId(String userId) {
+        getParamDao().saveOrUpdate(paramDao.MERCH_ID, userId);
+        this.userId = userId;
+    }
+
+    public String getStatus() {
+        if (status == null) {
+            status = getParamDao().getByName(paramDao.STATES);
+        }
+        return status;
+    }
+
+    public void setStatus(String status) {
+        getParamDao().saveOrUpdate(paramDao.STATES, status);
+        this.status = status;
+    }
+
+    public String getUserId() {
+        if (userId == null) {
+            userId = getParamDao().getByName(paramDao.MERCH_ID);
+        }
+        return userId;
+    }
+
+    public String getBeginTime() {
+        if (beginTime == null) {
+            beginTime = getParamDao().getByName(paramDao.BEGINTIME);
+        }
+        return beginTime;
+    }
+
+    public void setBeginTime(String beginTime) {
+        getParamDao().saveOrUpdate(paramDao.BEGINTIME, beginTime);
+        this.beginTime = beginTime;
+    }
+
+    public String getEndTime() {
+        if (endTime == null) {
+            endTime = getParamDao().getByName(paramDao.ENDTIME);
+        }
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        getParamDao().saveOrUpdate(paramDao.ENDTIME, endTime);
+        this.endTime = endTime;
+    }
+
+    public String getKey() {
+        if (key == null) {
+            key = getParamDao().getByName(paramDao.KEY);
+        }
+        return key;
+    }
+
+    public void setKey(String key) {
+        getParamDao().saveOrUpdate(paramDao.KEY, key);
+        this.key = key;
+    }
+
+    public String getMinAmt() {
+        if (minAmt == null) {
+            minAmt = getParamDao().getByName(paramDao.MINAMT);
+        }
+        return minAmt;
+    }
+
+    public void setMinAmt(String minAmt) {
+        getParamDao().saveOrUpdate(paramDao.MINAMT, minAmt);
+        this.minAmt = minAmt;
+    }
+
+    public String getMaxAmt() {
+        if (maxAmt == null) {
+            maxAmt = getParamDao().getByName(paramDao.MAXAMT);
+        }
+        return maxAmt;
+    }
+
+    public void setMaxAmt(String maxAmt) {
+        getParamDao().saveOrUpdate(paramDao.MAXAMT, maxAmt);
+        this.maxAmt = maxAmt;
+    }
+
+    public String getServiceList() {
+        if (serviceList == null) {
+            serviceList = getParamDao().getByName(paramDao.SERVICELIST);
+        }
+        return serviceList;
+    }
+
+    public void setServiceList(String serviceList) {
+        getParamDao().saveOrUpdate(paramDao.SERVICELIST, serviceList);
+        this.serviceList = serviceList;
+    }
+
+    public List<LoginResult.DataBean.ServiceListBean> getsList() {
+        Gson gson = new Gson();
+        sList = gson.fromJson(getServiceList(),
+                new TypeToken<List<LoginResult.DataBean.ServiceListBean>>() {
+                }.getType());
+        return sList;
+    }
+
+    public void setsList(List<LoginResult.DataBean.ServiceListBean> sList) {
+        this.sList = sList;
+    }
+
+    public String getAMT() {
+        if (AMT == null) {
+            AMT = getParamDao().getByName(paramDao.AMT);
+        }
+        return AMT;
+    }
+
+    public void setAMT(String AMT) {
+        getParamDao().saveOrUpdate(paramDao.AMT, AMT);
+        this.AMT = AMT;
+    }
+
+    public String getOrderId() {
+        if (orderId == null) {
+            orderId = getParamDao().getByName(paramDao.ORDERID);
+        }
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        getParamDao().saveOrUpdate(paramDao.ORDERID, orderId);
+        this.orderId = orderId;
+    }
+
+    public String getAVL_AMT() {
+        if (AVL_AMT == null) {
+            AVL_AMT = getParamDao().getByName(paramDao.AVL_AMT);
+        }
+        return AVL_AMT;
+    }
+
+    public void setAVL_AMT(String AVL_AMT) {
+        getParamDao().saveOrUpdate(paramDao.AVL_AMT, AVL_AMT);
+        this.AVL_AMT = AVL_AMT;
+    }
+
+    public String getBranchNo() {
+        if (branchNo == null) {
+            branchNo = getParamDao().getByName(paramDao.BRANCHNO);
+        }
+        return branchNo;
+    }
+
+    public void setBranchNo(String branchNo) {
+        getParamDao().saveOrUpdate(paramDao.BRANCHNO, branchNo);
+        this.branchNo = branchNo;
+    }
+
+    public String getMerchName() {
+        if (merchName == null) {
+            merchName = getParamDao().getByName(paramDao.MERCHNAME);
+        }
+        return merchName;
+    }
+
+    public void setMerchName(String merchName) {
+        getParamDao().saveOrUpdate(paramDao.MERCHNAME, merchName);
+        this.merchName = merchName;
+    }
+
+    public String getSY_AMT() {
+        if (SY_AMT == null) {
+            SY_AMT = getParamDao().getByName(paramDao.SY_AMT);
+        }
+        return SY_AMT;
+    }
+
+    public void setSY_AMT(String SY_AMT) {
+        getParamDao().saveOrUpdate(paramDao.SY_AMT, SY_AMT);
+        this.SY_AMT = SY_AMT;
+    }
+
+    public String getFee() {
+        if (fee == null) {
+            fee = getParamDao().getByName(paramDao.FEE);
+        }
+        if (AppTools.isEmpty(fee)) {
+            fee = "0.5";
+        }
+        return fee;
+    }
+
+    public void setFee(String fee) {
+        getParamDao().saveOrUpdate(paramDao.FEE, fee);
+        this.fee = fee;
+    }
+
+    public String getPlanCardStatus() {
+        if (planCardStatus == null) {
+            planCardStatus = getParamDao().getByName(paramDao.PLANCARDSTATUS);
+        }
+        return planCardStatus;
+    }
+
+    public void setPlanCardStatus(String planCardStatus) {
+        if (AppTools.isEmpty(planCardStatus)) {
+            planCardStatus = "0";
+        }
+        getParamDao().saveOrUpdate(paramDao.PLANCARDSTATUS, planCardStatus);
+        this.planCardStatus = planCardStatus;
+    }
+
+    public String getCardWhiteInfo() {
+        if (cardWhiteInfo == null) {
+            cardWhiteInfo = getParamDao().getByName(paramDao.CARDWHITEINFO);
+        }
+        return cardWhiteInfo;
+    }
+
+    public void setCardWhiteInfo(String cardWhiteInfo) {
+        getParamDao().saveOrUpdate(paramDao.CARDWHITEINFO, cardWhiteInfo);
+        this.cardWhiteInfo = cardWhiteInfo;
+    }
+
+    public List<GetWhiteCardListResult.DataBean> getcList() {
+        Gson gson = new Gson();
+        cList = gson.fromJson(getCardWhiteInfo(),
+                new TypeToken<List<GetWhiteCardListResult.DataBean>>() {
+                }.getType());
+        return cList;
+    }
+
+    public void setcList(List<GetWhiteCardListResult.DataBean> cList) {
+        this.cList = cList;
+    }
+}

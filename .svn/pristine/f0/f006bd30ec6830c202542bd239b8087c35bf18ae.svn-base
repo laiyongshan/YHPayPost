@@ -1,0 +1,405 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/title_toolbar"
+        android:layout_height="45dp"
+        android:layout_width="match_parent" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/fmtrans_swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/theme"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/text_title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="商户可用金额"
+                    android:textColor="@color/text_white" />
+
+                <TextView
+                    android:id="@+id/fmtrans_totalamt_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="0.00元"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_32" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_tip_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="小贴士：下拉刷新可更新各个状态"
+                android:textColor="@color/text_6" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/bg_white"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:foreground="@drawable/selector_foreground"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:text="冻结金额" />
+
+
+
+                        <TextView
+                            android:id="@+id/fmtrans_fznamt_tv"
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:text="0.00"
+                            android:textColor="@color/text_blue" />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_weight="1"
+                            android:background="@color/line_gray" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:foreground="@drawable/selector_foreground"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:text="商户状态" />
+
+
+
+                        <TextView
+                            android:id="@+id/fmtrans_status_tv"
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:text="生效" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/bg_white">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="冻结金额" />
+
+                                    <TextView
+                                        android:id="@+id/fmtrans_fznamt_tv"
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:text="0.00"
+                                        android:textColor="@color/text_blue" />
+
+                                </LinearLayout>
+
+
+                                <include layout="@layout/line_h" />
+
+                                <RelativeLayout
+                                    android:id="@+id/fmtrans_amt_rl"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:foreground="@drawable/selector_foreground"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="8dp"
+                                        android:text="刷卡可提现余额" />
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="10dp"
+                                        android:src="@mipmap/row" />
+
+                                    <TextView
+                                        android:id="@+id/fmtrans_amt_tv"
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginTop="5dp"
+                                        android:text="0.00"
+                                        android:textColor="@color/text_blue" />
+
+                                </RelativeLayout>
+
+                                <include layout="@layout/line_h" />
+
+
+                            </LinearLayout>
+
+                            <include layout="@layout/line_v" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="商家状态" />
+
+                                    <TextView
+                                        android:id="@+id/fmtrans_status_tv"
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:text="生效" />
+
+                                </LinearLayout>
+
+
+                                <include layout="@layout/line_h" />
+
+                                <RelativeLayout
+                                    android:id="@+id/fmtrans_fissionamt_rl"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:foreground="@drawable/selector_foreground"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="8dp"
+                                        android:text="微创业可提现余额" />
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="10dp"
+                                        android:src="@mipmap/row" />
+
+
+                                    <TextView
+                                        android:id="@+id/fmtrans_fissionamt_tv"
+                                        style="@style/text_normal_color_6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginTop="5dp"
+                                        android:text="0.00"
+                                        android:textColor="@color/text_blue" />
+
+                                </RelativeLayout>
+
+                                <include layout="@layout/line_h" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+            -->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fmtrans_withdrw_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/withdraw" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="提现" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+                <include layout="@layout/line_h"></include>
+
+                <LinearLayout
+                    android:id="@+id/fmtrans_trans_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/trans" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="交易查询" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+                <include layout="@layout/line_h" />
+
+                <LinearLayout
+                    android:id="@+id/fmtrans_fee_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:foreground="@drawable/selector_foreground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/fee" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="费率查询" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_next" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

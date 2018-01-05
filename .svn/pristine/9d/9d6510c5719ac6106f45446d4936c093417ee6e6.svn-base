@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_gray"
+    tools:context="com.yzf.Cpaypos.ui.activitys.BillingActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/billing_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/bg_white"
+        app:tabIndicatorColor="@color/text_blue"
+        app:tabSelectedTextColor="@color/text_blue"
+        app:tabTextColor="@color/text_tip" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/billing_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:background="@color/bg_white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+</LinearLayout>

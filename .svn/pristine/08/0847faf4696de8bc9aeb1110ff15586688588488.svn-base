@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.MerchFeeActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <cn.droidlover.xrecyclerview.XRecyclerContentLayout
+        android:id="@+id/merchfee_contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:recyclerBackgroundColor="@color/bg_white"
+        app:recyclerScrollbarNone="true"
+        app:recyclerScrollbarStyle="outsideOverlay" />
+
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.MerchInfoActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <cn.droidlover.xstatecontroller.XStateController
+        android:id="@+id/merchinfo_controller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:divider="@drawable/divider_horizontal"
+                android:dividerPadding="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+
+                <TextView
+                    android:id="@+id/merchinfo_name_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1" />
+
+
+                <TextView
+                    android:id="@+id/merchinfo_status_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1" />
+
+                <TextView
+                    android:id="@+id/merchinfo_idcard_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1" />
+
+                <TextView
+                    android:id="@+id/merchinfo_phone_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1" />
+
+                <TextView
+                    android:id="@+id/merchinfo_acctno_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1" />
+
+                <TextView
+                    android:id="@+id/merchinfo_acctname_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1" />
+
+                <TextView
+                    android:id="@+id/merchinfo_acctbank_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:minHeight="40dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </cn.droidlover.xstatecontroller.XStateController>
+
+
+</LinearLayout>

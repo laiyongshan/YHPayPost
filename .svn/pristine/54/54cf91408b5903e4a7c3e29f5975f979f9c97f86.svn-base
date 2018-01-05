@@ -1,0 +1,201 @@
+package com.yzf.Cpaypos.ui.activitys;
+
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.model.servicesmodels.AddRepaymentResults;
+import com.yzf.Cpaypos.present.PPayBond;
+import com.yzf.Cpaypos.widget.StateButton;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.router.Router;
+
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：PayBondActivity
+ * Description: 支付保证金页面
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/9/4 11:51
+ * Modified By：
+ * Fixtime：2017/9/4 11:51
+ * FixDescription：
+ */
+public class PayBondActivity extends XActivity<PPayBond> {
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.bond_total_tv)
+    TextView bondTotalTv;
+    @BindView(R.id.bond_fee_tv)
+    TextView bondFeeTv;
+    @BindView(R.id.bond_money_tv)
+    TextView bondMoneyTv;
+    @BindView(R.id.bond_months_tv)
+    TextView bondMonthsTv;
+    @BindView(R.id.bond_days_tv)
+    TextView bondDaysTv;
+    @BindView(R.id.bond_count_tv)
+    TextView bondCountTv;
+    @BindView(R.id.bond_tips_tv)
+    TextView bondTipsTv;
+    @BindView(R.id.bond_confirm_bt)
+    StateButton bondConfirmBt;
+    AddRepaymentResults.DataBean dataBean;
+
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        initView();
+        dataBean = (AddRepaymentResults.DataBean) getIntent().getSerializableExtra("dataBean");
+        if (dataBean!=null) {
+            bondTotalTv.setText(String.format("当月总金额：%s元", dataBean.getTotalAmount()));
+            bondFeeTv.setText(String.format("还款服务费：%s元", dataBean.getFeeAmount()));
+            bondMoneyTv.setText(String.format("还款保留金：%s元", dataBean.getDepositAmount()));
+            bondMonthsTv.setText(String.format("连续还款月数：%s个月", dataBean.getTimes()));
+            bondDaysTv.setText(String.format("每期还款日期：%s日", dataBean.getDetailDays()));
+            bondCountTv.setText(String.format("当月还款笔数：%s笔", dataBean.getCount()));
+            double total;
+            total=Double.parseDouble(dataBean.getFeeAmount())+Double.parseDouble(dataBean.getDepositAmount());
+
+            bondTipsTv.setText(String.format("tips: 规划确认后将从卡中扣除%1$s元，其中还款保留金%2$s元，服务费%3$s元。", AppTools.formatAmt(String.valueOf(total)),dataBean.getDepositAmount(),dataBean.getFeeAmount()));
+        }
+
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_pay_bond;
+    }
+
+    @Override
+    public PPayBond newP() {
+        return new PPayBond();
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initView() {
+        initToolbar();
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        title.setText("规划确认");
+    }
+
+    /**
+     * 标题栏监听
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * activity跳转
+     */
+    public void JumpActivity(Class<?> activity, boolean isfinish) {
+        getvDelegate().dismissLoading();
+        Router.newIntent(context)
+                .to(activity)
+                .launch();
+        if (isfinish) {
+            Router.pop(context);
+        }
+    }
+
+    public void finishActivity(String msg) {
+        showToast(msg);
+        finish();
+    }
+
+    /**
+     * 显示Toast
+     *
+     * @param msg
+     */
+    public void showToast(String msg) {
+        getvDelegate().toastShort(msg);
+    }
+
+    /**
+     * 显示当按钮对话框
+     *
+     * @param msg
+     */
+    public void showErrorDialog(String msg) {
+        getvDelegate().showErrorDialog(msg);
+    }
+
+    /**
+     * 显示错误信息
+     *
+     * @param error
+     */
+    public void showError(NetError error) {
+        getvDelegate().showError(error);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.bond_confirm_bt)
+    public void onViewClicked() {
+        getvDelegate().showLoading();
+        getP().ConfirmPlanCard(AppUser.getInstance().getUserId(), dataBean.getCardId(), dataBean.getOrderId(), "confirm");
+    }
+}

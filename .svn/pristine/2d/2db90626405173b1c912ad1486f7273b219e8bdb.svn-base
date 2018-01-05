@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.WithDrawActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/bg_white"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="到账银行"/>
+
+            <ImageView
+                android:id="@+id/withdraw_bank_iv"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/bank" />
+
+            <TextView
+                android:id="@+id/withdraw_settle_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text=""
+                android:textSize="@dimen/text_tip" />
+
+        </LinearLayout>
+
+        <include layout="@layout/line_h"></include>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="提现金额"/>
+
+            <TextView
+                android:id="@+id/withdraw_fee_tv"
+                style="@style/text_tip_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="10dp"
+                android:text="提现服务费0.00元/笔" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp">
+
+            <TextView
+                style="@style/text_normal_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="￥"
+                android:textColor="@color/text_main"
+                android:textSize="@dimen/text_28" />
+
+            <com.xw.repo.xedittext.XEditText
+                android:id="@+id/withdraw_amt_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@null"
+                android:hint="请输入金额"
+                android:padding="5dp"
+                android:textSize="@dimen/text_28" />
+
+        </LinearLayout>
+
+        <include layout="@layout/line_h"></include>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/withdraw_avlamt_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="10dp"
+                android:text="可提现金额 00.00"
+                android:textSize="@dimen/text_tip" />
+
+            <TextView
+                android:id="@+id/withdraw_tv"
+                style="@style/text_normal_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:text="全部提现"
+                android:textColor="@color/text_theme"
+                android:textSize="@dimen/text_tip" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <com.yzf.Cpaypos.widget.StateButton
+                android:id="@+id/withdraw_confirm_bt"
+                style="@style/button_text"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="提现"
+                app:normalBackgroundColor="@color/theme"
+                app:pressedBackgroundColor="@color/light_theme"
+                app:radius="5dp" />
+        </LinearLayout>
+
+        <com.yzf.Cpaypos.widget.WeChatPswKeyboard.VirtualKeyboardView
+            android:id="@+id/virtualKeyboardView"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

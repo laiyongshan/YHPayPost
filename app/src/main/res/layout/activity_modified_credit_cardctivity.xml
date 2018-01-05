@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_gray"
+    tools:context="com.yzf.Cpaypos.ui.activitys.ModifiedCreditCardctivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:divider="@drawable/divider_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="银行卡号" />
+
+                        <com.xw.repo.xedittext.XEditText
+                            android:id="@+id/modified_creditcardno_tv"
+                            style="@style/text_XEditText_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@null"
+                            android:hint="银行卡号"
+                            android:focusable="false"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:padding="5dp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="账单日" />
+
+                        <com.xw.repo.xedittext.XEditText
+                            android:id="@+id/modified_creditcardpayday_tv"
+                            style="@style/text_XEditText_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@null"
+                            android:hint="账单日"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:maxLines="1"
+                            android:padding="5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="还款日" />
+
+                        <com.xw.repo.xedittext.XEditText
+                            android:id="@+id/modified_creditcardrepayday_tv"
+                            style="@style/text_XEditText_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@null"
+                            android:hint="还款日"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:maxLines="1"
+                            android:padding="5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="卡额度" />
+
+                        <com.xw.repo.xedittext.XEditText
+                            android:id="@+id/modified_creditcardlimit_tv"
+                            style="@style/text_XEditText_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@null"
+                            android:hint="信用卡额度"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:padding="5dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <com.yzf.Cpaypos.widget.StateButton
+                android:id="@+id/modified_creditconfirm_bt"
+                style="@style/button_text"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:text="确定修改"
+                app:normalBackgroundColor="@color/theme"
+                app:pressedBackgroundColor="@color/light_theme"
+                app:radius="5dp" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

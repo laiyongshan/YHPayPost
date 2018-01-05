@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_toolbar" />
+
+    <com.yzf.Cpaypos.widget.MultipleStatusView
+        android:id="@+id/cgibankcard_multiplestatusview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        app:emptyView="@layout/custom_empty_view"
+        app:errorView="@layout/custom_error_view"
+        app:loadingView="@layout/custom_loading_view"
+        app:noNetworkView="@layout/custom_no_network_view">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/cgibankcard_swiperefreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+                android:id="@+id/cgibankcard_swipemenurecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:recyclerBackgroundColor="@color/bg_white"
+                app:recyclerScrollbarNone="true"
+                app:recyclerScrollbarStyle="outsideOverlay" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </com.yzf.Cpaypos.widget.MultipleStatusView>
+
+
+</LinearLayout>

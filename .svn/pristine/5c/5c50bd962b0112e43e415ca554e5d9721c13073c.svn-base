@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.FindPasswordActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:background="@drawable/img_circle_round">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@mipmap/icon_account" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/findpwd_phone_et"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:background="@null"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:hint="11位手机号码" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/findpwd_code_bt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    app:normalBackgroundColor="@color/theme"
+                    app:pressedBackgroundColor="@color/light_theme"
+                    app:radius="5dp"
+                    app:unableBackgroundColor="@color/text_gray"
+                    android:textColor="@color/text_white"
+                    android:text="验证码" />
+            </LinearLayout>
+
+            <include layout="@layout/line_h" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@mipmap/code" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/findpwd_code_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:hint="手机验证码" />
+            </LinearLayout>
+
+            <include layout="@layout/line_h" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@mipmap/icon_pwd" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/findpwd_pwd_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:background="@null"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:hint="6~20位登录密码" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="13sp"
+                android:textColor="@color/text_6"
+                android:text="注:密码由6-20位英文、字母或数字组成" />
+        </LinearLayout>
+
+        <com.yzf.Cpaypos.widget.StateButton
+            style="@style/button_text"
+            android:id="@+id/findpwd_confirm_bt"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="20dp"
+            app:normalBackgroundColor="@color/theme"
+            app:pressedBackgroundColor="@color/light_theme"
+            app:radius="5dp"
+            android:text="确定" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_6"
+                android:text="@string/change_pwd_tips" />
+
+            <TextView
+                android:id="@+id/findpwd_call_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:clickable="true"
+                android:autoLink="phone"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/text_blue"
+                android:text="@string/hotline_no" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

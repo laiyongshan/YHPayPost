@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.PayBondActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/bg_white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="您需要支付保留金"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/text_tip_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="保留金=还款服务费+还款保留金" />
+
+                    <TextView
+                        android:id="@+id/bond_payamt_tv"
+                        style="@style/text_title_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="￥00.00"
+                        android:textSize="@dimen/text_32"
+                        android:textStyle="bold" />
+
+                    <include layout="@layout/line_h"></include>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            style="@style/text_tip_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="还款总金额"/>
+
+                        <TextView
+                            android:id="@+id/bond_total_tv"
+                            style="@style/text_tip_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center_vertical|right"
+                            android:maxLines="1"
+                            android:text="00" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            style="@style/text_tip_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="还款服务费"/>
+
+                        <TextView
+                            android:id="@+id/bond_fee_tv"
+                            style="@style/text_tip_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center_vertical|right"
+                            android:maxLines="1"
+                            android:text="00" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            style="@style/text_tip_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="还款保留金(规划完成后将退还)"/>
+
+                        <TextView
+                            android:id="@+id/bond_money_tv"
+                            style="@style/text_tip_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center_vertical|right"
+                            android:maxLines="1"
+                            android:text="00" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            style="@style/text_tip_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="还款总期数" />
+
+                        <TextView
+                            android:id="@+id/bond_count_tv"
+                            style="@style/text_tip_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center_vertical|right"
+                            android:maxLines="1"
+                            android:text="00" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            style="@style/text_tip_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="每月拆分笔数" />
+
+                        <TextView
+                            android:id="@+id/bond_times_tv"
+                            style="@style/text_tip_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center_vertical|right"
+                            android:maxLines="1"
+                            android:text="00" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            style="@style/text_tip_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="每月还款日期"/>
+
+                        <TextView
+                            android:id="@+id/bond_detaildays_tv"
+                            style="@style/text_tip_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center_vertical|right"
+                            android:maxLines="1"
+                            android:text="00" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"></LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/bg_white"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/bond_credit_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="本张信用卡"
+                        android:textColor="@color/light_theme"
+                        android:textSize="@dimen/text_17" />
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/line_gray" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bond_limit_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="授信额度"
+                        android:textColor="@color/text_9"
+                        android:textSize="@dimen/text_17" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.yzf.Cpaypos.widget.StateButton
+                android:id="@+id/bond_confirm_bt"
+                style="@style/button_text"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:text="支付"
+                app:normalBackgroundColor="@color/theme"
+                app:pressedBackgroundColor="@color/light_theme"
+                app:radius="5dp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

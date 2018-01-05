@@ -1,0 +1,104 @@
+package com.yzf.Cpaypos.present;
+
+import com.google.gson.Gson;
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.kit.utils.Des3;
+import com.yzf.Cpaypos.model.servicesmodels.GetMerchInfoResult;
+import com.yzf.Cpaypos.net.Api;
+import com.yzf.Cpaypos.ui.activitys.MerchInfoActivity;
+
+import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.net.ApiSubcriber;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.net.XApi;
+
+/**
+ * ClaseName：PMerchInfo
+ * Description：商户信息逻辑
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/3/31 16:40
+ * Modified By：
+ * Fixtime：2017/3/31 16:40
+ * FixDescription：
+ */
+
+public class PMerchInfo extends XPresent<MerchInfoActivity> {
+    /**
+     * 获取商户信息
+     *
+     * @param merchid
+     */
+    public void getMerchInfo(String merchid) {
+
+        Api.getAPPService().getMerchInfo(merchid)
+                .compose(XApi.<GetMerchInfoResult>getApiTransformer())
+                .compose(XApi.<GetMerchInfoResult>getScheduler())
+                .compose(getV().<GetMerchInfoResult>bindToLifecycle())
+                .subscribe(new ApiSubcriber<GetMerchInfoResult>() {
+                    @Override
+                    public void onNext(GetMerchInfoResult getMerchInfoResult) {
+                        if (getMerchInfoResult.getRespCode().equals("00")) {
+                            try {
+                                String status = getMerchInfoResult.getData().getMerchStatus();
+                                getMerchInfoResult.getData().setMerchStatus(setStatus(status));
+                                String idcard = getMerchInfoResult.getData().getIdCard();
+                                idcard = Des3.decode(idcard);
+                                getMerchInfoResult.getData().setIdCard(idcard);
+                                String phone = getMerchInfoResult.getData().getPhoneNo();
+                                phone = Des3.decode(phone);
+                                getMerchInfoResult.getData().setPhoneNo(phone);
+                                String acctno = getMerchInfoResult.getData().getAcctNo();
+                                acctno = Des3.decode(acctno);
+                                getMerchInfoResult.getData().setAcctNo(acctno);
+                                Gson gson = new Gson();
+                                AppUser.getInstance().setSettleInfo(gson.toJson(getMerchInfoResult.getData()));//将结算信息存到单例中
+                                getV().setMerchInfo(getMerchInfoResult.getData());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                getV().showErrorView("验签失败，请到首页刷新或重新登录");
+                            }
+                        } else {
+                            getV().showErrorView(getMerchInfoResult.getRespMsg());
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showErrorView(error);
+                    }
+
+                });
+    }
+
+    public String setStatus(String status) {
+        if (!AppTools.isEmpty(status)) {
+            if (status.equals("00")) {
+                status = "已实名认证";
+            } else if (status.equals("01")) {
+                status = "认证信息不全";
+            } else if (status.equals("02")) {
+                status = "认证图片不全";
+            } else if (status.equals("03")) {
+                status = "未认证";
+            } else if (status.equals("10")) {
+                status = "已停用";
+            } else if (status.equals("30")) {
+                status = "审核中";
+            }
+        }
+        return status;
+    }
+
+    private int getImgId(String imgName) {
+        int id = -1;
+        try {
+            id = getV().getResources().getIdentifier(imgName, "mipmap", getV().getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+}

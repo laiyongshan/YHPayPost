@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.BindCardActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/img_circle_round"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="银行卡号：" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/bindcard_acctno_tv"
+                    style="@style/text_XEditText_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:hint="请输入银行卡号"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/img_circle_round"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp">
+
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="银行预留手机号：" />
+
+            <com.xw.repo.xedittext.XEditText
+                android:id="@+id/bindcard_phoneno_tv"
+                style="@style/text_XEditText_style"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:hint="请输入银行预留手机号"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.yzf.Cpaypos.widget.StateButton
+        android:id="@+id/bindcard_bt"
+        style="@style/button_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="绑定"
+        app:normalBackgroundColor="@color/theme"
+        app:pressedBackgroundColor="@color/light_theme"
+        app:radius="5dp" />
+
+
+</LinearLayout>

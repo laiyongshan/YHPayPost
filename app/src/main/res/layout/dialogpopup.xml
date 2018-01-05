@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?android:actionBarSize">
+
+    <!--播放动画的内容，可以认为是popup的主要内容布局-->
+    <LinearLayout
+        android:id="@+id/popup_anima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_gray"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/popup_begintime_rl"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/bg_white"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="开始时间" />
+
+            <TextView
+                android:id="@+id/begin_time"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView6"
+                android:layout_alignBottom="@+id/textView6"
+                android:layout_marginEnd="63dp"
+                android:layout_marginRight="63dp"
+                android:layout_toLeftOf="@+id/imageView3"
+                android:layout_toStartOf="@+id/imageView3"
+                android:text="2016-10-10" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/row" />
+        </RelativeLayout>
+
+
+        <TextView
+            style="@style/line_horizontal_gray"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:id="@+id/popup_endtime_rl"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/bg_white"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="结束时间" />
+
+            <TextView
+                android:id="@+id/end_time"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="80dp"
+                android:text="2016-10-10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/row" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/line_horizontal_gray"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/bg_white"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="交易类型" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/trans_type_spinner"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:spinnerMode="dialog" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/line_horizontal_gray"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/bg_white"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:popupBackground="@color/bg_white"
+                android:text="交易结果" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/trans_result_spinner"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:popupBackground="@color/bg_white"
+                android:spinnerMode="dialog" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/line_horizontal_gray"
+            android:layout_alignParentBottom="true" />
+
+
+        <com.yzf.Cpaypos.widget.StateButton
+            android:id="@+id/popup_search_bt"
+            style="@style/button_text"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="15dp"
+            android:text="查询"
+            app:normalBackgroundColor="@color/theme"
+            app:pressedBackgroundColor="@color/light_theme"
+            app:radius="5dp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

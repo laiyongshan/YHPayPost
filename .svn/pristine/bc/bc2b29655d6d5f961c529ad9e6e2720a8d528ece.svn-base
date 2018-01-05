@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.ChangePwdActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="原&#160;&#160;密&#160;&#160;码:"
+                        android:textColor="@color/text_6"
+                        android:textSize="@dimen/text_title" />
+
+                    <com.xw.repo.xedittext.XEditText
+                        android:id="@+id/changepwd_oldpwd_et"
+                        style="@style/text_XEditText_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@null"
+                        android:hint="请输入当前密码"
+                        android:inputType="textPassword"
+                        android:maxLength="20"
+                        android:padding="5dp"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/line_horizontal_gray"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="新&#160;&#160;密&#160;&#160;码:"
+                        android:textColor="@color/text_6"
+                        android:textSize="@dimen/text_title" />
+
+                    <com.xw.repo.xedittext.XEditText
+                        android:id="@+id/changepwd_newpwd_et"
+                        style="@style/text_XEditText_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@null"
+                        android:hint="请输入新密码"
+                        android:inputType="textPassword"
+                        android:maxLength="20"
+                        android:padding="5dp"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/line_horizontal_gray"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="确认密码:"
+                        android:textColor="@color/text_6"
+                        android:textSize="@dimen/text_title" />
+
+                    <com.xw.repo.xedittext.XEditText
+                        android:id="@+id/changepwd_newpwds_et"
+                        style="@style/text_XEditText_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@null"
+                        android:hint="请再次输入新密码"
+                        android:inputType="textPassword"
+                        android:maxLength="20"
+                        android:padding="5dp"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/line_horizontal_gray"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/small_start" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="注:密码由6-20位英文、字母或数字组成"
+                    android:textColor="@color/text_9"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <com.yzf.Cpaypos.widget.StateButton
+                android:id="@+id/changepwd_bt"
+                style="@style/button_text"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:text="确定"
+                app:normalBackgroundColor="@color/theme"
+                app:pressedBackgroundColor="@color/light_theme"
+                app:radius="5dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

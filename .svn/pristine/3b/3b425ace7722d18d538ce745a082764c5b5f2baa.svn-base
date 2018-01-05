@@ -1,0 +1,70 @@
+package com.yzf.Cpaypos.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
+
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.model.servicesmodels.GetMerchFeeResult;
+
+import butterknife.BindView;
+import cn.droidlover.xdroidmvp.base.SimpleRecAdapter;
+import cn.droidlover.xdroidmvp.kit.KnifeKit;
+
+/**
+ * Created by wanglei on 2016/12/10.
+ */
+
+public class MerchFeeAdapter extends SimpleRecAdapter<GetMerchFeeResult.DataBean, MerchFeeAdapter.ViewHolder> {
+
+    public static final int TAG_VIEW = 0;
+
+    public MerchFeeAdapter(Context context) {
+        super(context);
+    }
+
+    @Override
+    public ViewHolder newViewHolder(View itemView) {
+        return new ViewHolder(itemView);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.adapter_merchfee;
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        final GetMerchFeeResult.DataBean item = data.get(position);
+        holder.merchfeeTypeAdapter.setText("业务类型：" + item.getServiceName());
+        holder.merchfeeFeeAdapter.setText("费率：" + item.getFeeValue());
+        holder.merchfeeFeetypeAdapter.setText("费率类型：" + item.getFeeType());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getRecItemClick() != null) {
+                    getRecItemClick().onItemClick(position, item, TAG_VIEW, holder);
+                }
+            }
+        });
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+
+        @BindView(R.id.merchfee_type_adapter)
+        TextView merchfeeTypeAdapter;
+        @BindView(R.id.merchfee_fee_adapter)
+        TextView merchfeeFeeAdapter;
+        @BindView(R.id.merchfee_feetype_adapter)
+        TextView merchfeeFeetypeAdapter;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            KnifeKit.bind(this, itemView);
+        }
+    }
+
+}

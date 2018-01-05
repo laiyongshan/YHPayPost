@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:foreground="@drawable/selector_foreground">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/plancard_day_adapter"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:text="还款日" />
+
+        <TextView
+            android:id="@+id/plancard_amt_adapter"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="3000" />
+
+        <TextView
+            android:id="@+id/plancard_status_adapter"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plancard_day_adapter"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="成功" />
+
+        <TextView
+            android:id="@+id/plancard_delete_adapter"
+            style="@style/text_tip_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/plancard_amt_adapter"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="删除"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

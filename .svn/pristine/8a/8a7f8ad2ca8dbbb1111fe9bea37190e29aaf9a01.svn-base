@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.InputMoneyActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="right|center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/input_number_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:enabled="false"
+            android:gravity="right|bottom"
+            android:hint="￥ 0.00"
+            android:maxLength="10"
+            android:paddingBottom="20dp"
+            android:paddingRight="20dp"
+            android:textColor="@color/text_main"
+            android:textColorHint="@color/text_main"
+            android:textSize="35sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_1"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="1"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_4"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="4"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_7"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="7"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_point"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="."
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+            </LinearLayout>
+
+            <include layout="@layout/line_v" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_2"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="2"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_5"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="5"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_8"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="8"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_0"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="0"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+            </LinearLayout>
+
+            <include layout="@layout/line_v" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_3"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="3"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_6"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="6"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_9"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="9"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+                <include layout="@layout/line_h" />
+
+                <!--<com.milian.Fpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_del"
+                    style="@style/text_black_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:src="@mipmap/delete"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p" />-->
+
+                <ImageView
+                    android:id="@+id/id_keypad_del"
+                    style="@style/text_white_num"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_num_background_r"
+                    android:scaleType="center"
+                    android:src="@mipmap/delete" />
+            </LinearLayout>
+
+            <include layout="@layout/line_v" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_wx"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="微\n信\n收\n款"
+                    android:textColor="@color/text_white"
+                    app:normalBackgroundColor="#038800"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_zfb"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="支\n付\n宝\n收\n款"
+                    android:textColor="@color/text_white"
+                    app:normalBackgroundColor="#3e94f1"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/id_keypad_yl"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="银\n联\n收\n款"
+                    android:textColor="@color/text_white"
+                    app:normalBackgroundColor="#4550c7"
+                    app:pressedBackgroundColor="@color/btn_white_p" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

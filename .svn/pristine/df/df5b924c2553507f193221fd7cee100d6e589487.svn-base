@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.ShareActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/share_capture_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/share"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/share_tips_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="@string/invite_you" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="坐享永久收益" />
+
+        <ImageView
+            android:id="@+id/share_qrcode_iv"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

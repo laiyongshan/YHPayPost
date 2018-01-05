@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/content_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="15dp"
+        android:text="带有ListView的Dialog"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <include layout="@layout/line_h" />
+
+    <ListView
+        android:id="@+id/content_dialog_lv"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <include layout="@layout/line_h" />
+
+    <LinearLayout
+        android:id="@+id/content_dialog_add_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_bg"
+        android:foreground="@drawable/selector_foreground"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/addcard" />
+
+        <TextView
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="添加新卡" />
+    </LinearLayout>
+</LinearLayout>

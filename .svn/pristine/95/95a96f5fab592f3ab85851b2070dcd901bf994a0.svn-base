@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.MerchInfoActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <com.yzf.Cpaypos.widget.MultipleStatusView
+        android:id="@+id/multiplestatusview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyView="@layout/custom_empty_view"
+        app:errorView="@layout/custom_error_view"
+        app:loadingView="@layout/custom_loading_view"
+        app:noNetworkView="@layout/custom_no_network_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:divider="@drawable/divider_horizontal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商户名称"
+                        android:textColor="@color/text_6" />
+
+                    <TextView
+                        android:id="@+id/merchinfo_name_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商户状态"
+                        android:textColor="@color/text_6" />
+
+                    <TextView
+                        android:id="@+id/merchinfo_status_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="身份证号"
+                        android:textColor="@color/text_6" />
+
+                    <TextView
+                        android:id="@+id/merchinfo_idcard_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="手机号码"
+                        android:textColor="@color/text_6" />
+
+                    <TextView
+                        android:id="@+id/merchinfo_phone_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开户账号"
+                        android:textColor="@color/text_6" />
+
+                    <TextView
+                        android:id="@+id/merchinfo_acctno_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="结算银行"
+                        android:textColor="@color/text_6" />
+
+                    <TextView
+                        android:id="@+id/merchinfo_acctname_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="结算卡号"
+                        android:textColor="@color/text_6" />
+
+                    <TextView
+                        android:id="@+id/merchinfo_acctbank_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </com.yzf.Cpaypos.widget.MultipleStatusView>
+
+
+</LinearLayout>

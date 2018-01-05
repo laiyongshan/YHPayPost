@@ -1,0 +1,221 @@
+package com.yzf.Cpaypos.ui.fragments;
+
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.kit.AppConfig;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.model.servicesmodels.GetAccountInfoResult;
+import com.yzf.Cpaypos.present.PTransFragment;
+import com.yzf.Cpaypos.ui.activitys.AccountActivity;
+import com.yzf.Cpaypos.ui.activitys.MerchFeeActivity;
+import com.yzf.Cpaypos.ui.activitys.MerchTransActivity;
+import com.yzf.Cpaypos.ui.activitys.WithDrawActivity;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+import cn.droidlover.xdroidmvp.event.BusProvider;
+import cn.droidlover.xdroidmvp.event.IEvent;
+import cn.droidlover.xdroidmvp.mvp.XFragment;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.router.Router;
+import rx.functions.Action1;
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：TransFragment
+ * Description: 账户查询页面
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/5/18 12:01
+ * Modified By：
+ * Fixtime：2017/5/18 12:01
+ * FixDescription：
+ */
+
+public class TransFragment extends XFragment<PTransFragment> {
+
+
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.fmtrans_totalamt_tv)
+    TextView fmtransTotalamtTv;
+    @BindView(R.id.fmtrans_fznamt_tv)
+    TextView fmtransFznamtTv;
+    @BindView(R.id.fmtrans_avlamt_tv)
+    TextView fmtransAvlamtTv;
+    @BindView(R.id.fmtrans_withdrw_ll)
+    LinearLayout fmtransWithdrwLl;
+    @BindView(R.id.fmtrans_trans_ll)
+    LinearLayout fmtransTransLl;
+    @BindView(R.id.fmtrans_fee_ll)
+    LinearLayout fmtransFeeLl;
+    @BindView(R.id.fmtrans_swipe_container)
+    SwipeRefreshLayout fmtransSwipeContainer;
+    Unbinder unbinder;
+    private String state;
+    GetAccountInfoResult.DataBean dataBean;
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        useEventBus(true);
+        initView();
+        getP().getAcctInfo(AppUser.getInstance().getUserId());
+        fmtransSwipeContainer.setColorSchemeColors(getResources().getColor(R.color.theme));
+        fmtransSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getP().getAcctInfo(AppUser.getInstance().getUserId());
+            }
+        });
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initView() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        title.setText("账单");
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_trans;
+    }
+
+    @Override
+    public PTransFragment newP() {
+        return new PTransFragment();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        state = AppUser.getInstance().getStatus();
+//        getP().getAcctInfo(AppUser.getInstance().getUserId());
+    }
+
+    @Override
+    public void bindEvent() {
+        BusProvider.getBus().toObservable(IEvent.class)
+                .subscribe(new Action1<IEvent>() {
+                    @Override
+                    public void call(IEvent iEvent) {
+                        //TODO 事件处理
+                        if (iEvent.getId().equals("refresh_money")) {
+                            getP().getAcctInfo(AppUser.getInstance().getUserId());
+                        }
+                    }
+                });
+    }
+
+
+    public void JumpActivity(Class<?> activity) {
+        Router.newIntent(context)
+                .to(activity)
+                .launch();
+    }
+
+    public void JumpActivity(Class<?> activity, String serviceId) {
+        Router.newIntent(context)
+                .to(activity)
+                .putString("serviceId", serviceId)
+                .launch();
+    }
+
+    public void showToast(String msg) {
+        getvDelegate().toastShort(msg);
+    }
+
+
+    /**
+     * 显示单按钮对话框
+     *
+     * @param msg
+     */
+    public void showErrorDialog(String msg) {
+        getvDelegate().showErrorDialog(msg);
+    }
+
+    /**
+     * 显示双按钮对话框
+     *
+     * @param msg
+     * @param callback
+     */
+    public void showNoticeDialog(String msg, MaterialDialog.SingleButtonCallback callback) {
+        getvDelegate().showNoticeDialog(msg, callback);
+    }
+
+    public void showError(NetError error) {
+        fmtransSwipeContainer.setRefreshing(false);
+        getvDelegate().showError(error);
+    }
+
+
+    public void setAcctInfo(GetAccountInfoResult getAccountInfoResult) {
+        dataBean=getAccountInfoResult.getData();
+        fmtransSwipeContainer.setRefreshing(false);
+        fmtransFznamtTv.setText(getAccountInfoResult.getData().getFznAmt());
+        fmtransAvlamtTv.setText(getAccountInfoResult.getData().getAvlbBal());
+        fmtransTotalamtTv.setText(getAccountInfoResult.getData().getSumAmt() + "元");
+    }
+
+
+    @OnClick({R.id.fmtrans_withdrw_ll, R.id.fmtrans_trans_ll, R.id.fmtrans_fee_ll})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+
+            case R.id.fmtrans_withdrw_ll:
+                if (getP().isVerifyPass(state)) {
+                    Router.newIntent(context)
+                            .to(AccountActivity.class)
+                            .putSerializable("dataBean", dataBean)
+                            .launch();
+                }
+                break;
+            case R.id.fmtrans_trans_ll:
+                if (getP().isVerifyPass(state)) {
+                    JumpActivity(MerchTransActivity.class);
+                }
+                break;
+            case R.id.fmtrans_fee_ll:
+                if (getP().isVerifyPass(state)) {
+                    JumpActivity(MerchFeeActivity.class);
+                }
+                break;
+        }
+    }
+}

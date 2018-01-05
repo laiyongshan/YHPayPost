@@ -1,0 +1,78 @@
+package com.yzf.Cpaypos.present;
+
+import com.yzf.Cpaypos.model.servicesmodels.GetMerchFeeResult;
+import com.yzf.Cpaypos.net.Api;
+import com.yzf.Cpaypos.ui.activitys.MerchFeeActivity;
+
+import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.net.ApiSubcriber;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.net.XApi;
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：PMerchFee
+ * Description: 商户费率逻辑
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/3/20 9:18
+ * Modified By：
+ * Fixtime：2017/3/20 9:18
+ * FixDescription：
+ */
+public class PMerchFee extends XPresent<MerchFeeActivity> {
+
+
+    /**
+     * 获取商户费率
+     *
+     * @param userId
+     */
+    public void getMerchFee(String userId) {
+        Api.getAPPService().getMerchFee(userId)
+                .compose(XApi.<GetMerchFeeResult>getApiTransformer())
+                .compose(XApi.<GetMerchFeeResult>getScheduler())
+                .compose(getV().<GetMerchFeeResult>bindToLifecycle())
+                .subscribe(new ApiSubcriber<GetMerchFeeResult>() {
+                    @Override
+                    public void onNext(GetMerchFeeResult getMerchFeeResult) {
+                        if (getMerchFeeResult.getRespCode().equals("00")) {
+                            if (getMerchFeeResult.getRespCode().equals("00")) {
+                                getV().setAdapter(getMerchFeeResult);
+                            }
+                        } else {
+                            getV().showErrorView(getMerchFeeResult.getRespMsg());
+                        }
+
+                    }
+
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showErrorView(error);
+                    }
+
+                });
+    }
+
+}

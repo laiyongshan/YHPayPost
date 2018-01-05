@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <!--<include layout="@layout/view_toolbar"/>-->
+    <!-- <View
+         android:layout_width="match_parent"
+         android:layout_height="5dp"
+         android:background="@color/colorPrimary"></View>
+ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.bigkoo.convenientbanner.ConvenientBanner
+            android:id="@+id/convenientBanner"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:visibility="visible"
+            app:canLoop="true" />
+
+<!--        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/banner2"
+            android:visibility="gone" />-->
+
+        <cn.droidlover.xrecyclerview.XRecyclerContentLayout
+            android:layout_marginTop="5dp"
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:recyclerBackgroundColor="@color/bg_gray"
+            app:recyclerScrollbarNone="true"
+            app:recyclerScrollbarStyle="outsideOverlay" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

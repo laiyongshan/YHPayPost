@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.PlanCardActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:divider="@drawable/divider_horizontal"
+            android:dividerPadding="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="信用卡：" />
+
+                <TextView
+                    android:id="@+id/plancard_cardno_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="right|center"
+                    android:padding="5dp"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="银行名称：" />
+
+                <TextView
+                    android:id="@+id/plancard_name_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="right|center"
+                    android:padding="5dp"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="账单日：" />
+
+                <TextView
+                    android:id="@+id/plancard_day1_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="right|center"
+                    android:padding="5dp"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还款日：" />
+
+                <TextView
+                    android:id="@+id/plancard_day2_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="right|center"
+                    android:padding="5dp"
+                    android:text="" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卡额度：" />
+
+                <TextView
+                    android:id="@+id/plancard_limit_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="right|center"
+                    android:padding="5dp"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本期账单：" />
+
+                <TextView
+                    android:id="@+id/plancard_bill_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="right|center"
+                    android:padding="5dp"
+                    android:text="" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.yzf.Cpaypos.widget.StateButton
+        android:id="@+id/cgibindcard_confirm_bt"
+        style="@style/button_text"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="新增计划"
+        app:normalBackgroundColor="@color/theme"
+        app:pressedBackgroundColor="@color/light_theme"
+        app:radius="5dp" />
+
+    <TextView
+        style="@style/text_normal_color_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:text="还款计划列表"
+        android:textSize="@dimen/text_normal" />
+
+
+    <cn.droidlover.xrecyclerview.XRecyclerContentLayout
+        android:id="@+id/plancard_contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:recyclerBackgroundColor="@color/bg_white"
+        app:recyclerScrollbarNone="true"
+        app:recyclerScrollbarStyle="outsideOverlay" />
+
+
+</LinearLayout>

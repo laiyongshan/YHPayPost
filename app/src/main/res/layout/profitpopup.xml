@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/bg_white"
+        android:orientation="vertical">
+
+        <TextView style="@style/line_horizontal_gray" />
+
+        <RelativeLayout
+            android:id="@+id/profitpop_begintime_rl"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="开始时间"
+                android:id="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/begin_time"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="63dp"
+                android:text="2016-10-10"
+                android:layout_alignBaseline="@+id/textView6"
+                android:layout_alignBottom="@+id/textView6"
+                android:layout_toLeftOf="@+id/imageView3"
+                android:layout_toStartOf="@+id/imageView3"
+                android:layout_marginEnd="63dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/row"
+                android:id="@+id/imageView3" />
+        </RelativeLayout>
+
+
+        <TextView
+            style="@style/line_horizontal_gray"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:id="@+id/profitpop_endtime_rl"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="结束时间" />
+
+            <TextView
+                android:id="@+id/end_time"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="80dp"
+                android:text="2016-10-10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/row" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/line_horizontal_gray"
+            android:layout_alignParentBottom="true" />
+
+
+        <com.yzf.Cpaypos.widget.StateButton
+            android:id="@+id/profitpop_search_bt"
+            style="@style/button_text"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="查询"
+            app:normalBackgroundColor="@color/theme"
+            app:pressedBackgroundColor="@color/light_theme"
+            app:radius="5dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

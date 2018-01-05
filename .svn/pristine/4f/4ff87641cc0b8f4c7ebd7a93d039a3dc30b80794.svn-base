@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.PayPlanActivity">
+
+    <include layout="@layout/title_toolbar_close" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/payplan_bank_iv"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/circle_gray_bg"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/bank" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/icon_unionpay" />
+
+            <TextView
+                android:id="@+id/payplan_bankname_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/payplan_bank_iv"
+                android:text="中国银行"
+                android:textColor="@color/text_main"
+                android:textSize="@dimen/text_normal" />
+
+            <TextView
+                android:id="@+id/payplan_bankNo_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/payplan_bankname_tv"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/payplan_bank_iv"
+                android:text="尾号0000"
+                android:textColor="@color/text_6"
+                android:textSize="@dimen/text_sub" />
+
+            <TextView
+                android:id="@+id/payplan_banktype_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/payplan_bankname_tv"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/payplan_bankNo_tv"
+                android:text="储蓄卡"
+                android:textColor="@color/text_6"
+                android:textSize="@dimen/text_sub" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="10dp"
+            android:divider="@drawable/divider_horizontal"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:background="@color/bg_white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/payplan_name_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="保留金" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/payplan_amt_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@null"
+                    android:hint="保证金"
+                    android:inputType="number"
+                    android:maxLength="13"
+                    android:maxLines="1"
+                    android:focusable="false"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColorHint="@color/text_hint"
+                    android:textStyle="bold"
+                    android:text="￥00.00"
+                    android:textSize="@dimen/text_28" />
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="手机号" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/payplan_phone_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:hint="11位手机号码"
+                    android:inputType="number"
+                    android:maxLength="13"
+                    android:maxLines="1"
+                    android:focusable="false"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_normal_color_6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="验证码" />
+
+                <com.xw.repo.xedittext.XEditText
+                    android:id="@+id/payplan_code_et"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="注意查收短信"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="16sp" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/payplan_code_bt"
+                    style="@style/button_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="5dp"
+                    android:text="获取验证码"
+                    android:textColor="@color/text_white"
+                    android:textSize="12sp"
+                    app:normalBackgroundColor="@color/btn_theme"
+                    app:pressedBackgroundColor="@color/btn_theme_p"
+                    app:radius="5dp"
+                    app:unableBackgroundColor="@color/text_tip" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <com.yzf.Cpaypos.widget.StateButton
+        android:id="@+id/pay_confirm_bt"
+        style="@style/button_text"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:text="支付"
+        app:normalBackgroundColor="@color/theme"
+        app:pressedBackgroundColor="@color/light_theme"
+        app:radius="5dp" />
+</LinearLayout>

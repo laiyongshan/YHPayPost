@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:foreground="@drawable/selector_foreground">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:id="@+id/plancard_amt_adapter"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@mipmap/icon_plan_left"
+            android:drawablePadding="10dp"
+            android:text="还款金额" />
+
+        <TextView
+            android:id="@+id/plancard_fee_adapter"
+            style="@style/text_tip_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plancard_amt_adapter"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/plancard_status_adapter"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/plancard_date_adapter"
+            style="@style/text_tip_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/plancard_status_adapter"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

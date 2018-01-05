@@ -1,0 +1,321 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/title_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/fmfission_swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/theme"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fmfission_totalamt_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00元"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_32" />
+
+                <TextView
+                    android:id="@+id/fmfission_dayamt_tv"
+                    style="@style/text_title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@mipmap/icon_fission"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@mipmap/icon_fission"
+                    android:text="@string/day_profit"
+                    android:textColor="@color/text_white" />
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/fission_withdraw_bt"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="160dp"
+                    android:layout_margin="10dp"
+                    android:text="提现"
+                    android:textColor="@color/text_theme"
+                    app:normalBackgroundColor="@color/btn_white"
+                    app:pressedBackgroundColor="@color/btn_white_p"
+                    app:radius="5dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/bg_white"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/fission_levl_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:foreground="@drawable/selector_foreground"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:text="我的等级" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/row" />
+
+                        <TextView
+                            android:id="@+id/fission_levl_tv"
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:text="黄金"
+                            android:textColor="@color/text_theme" />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_weight="1"
+                            android:background="@color/line_gray" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/fission_amout_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:foreground="@drawable/selector_foreground"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:text="我的商户（个）" />
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/row" />
+
+                        <TextView
+                            android:id="@+id/fission_amout_tv"
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:text="0"
+                            android:textColor="@color/text_theme" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="5dp"
+                        android:text="微创业须知：" />
+
+                    <TextView
+                        android:id="@+id/fission_tips_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="5dp"
+                        android:text="1.一键分享至社交平台，可推广商户免费注册交易，分享越多，收益越多；\n2.分享后新增商户自动关联在你的账户底下；\n3.所有收益将实时返佣，可在【微创业】手动提现；\n4.本活动无附加费用，不影响正常交易收费。" />
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="3"
+                android:background="@color/bg_white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_gray" />
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="立即分享"
+                        android:textAlignment="center" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_gray" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/fission_weixin_ll"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@mipmap/weixin" />
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="微信" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/fission_lintimes_ll"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@mipmap/linetimes" />
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="朋友圈" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/fission_qrcode_ll"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@mipmap/qrcode" />
+
+                        <TextView
+                            style="@style/text_normal_color_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="二维码" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

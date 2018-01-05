@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">友禾卡管家</string>
+    <string name="app_version">友禾卡管家 V%1$s</string>
+
+    <string name="PGYER_APPID">d72ea9becae78ddea6c347e607020dc5</string>
+    <string name="IDSECRET">24696481-1</string>
+    <string name="APPSECRET">766e84024bcbcafc36a23846e4ed39fe</string>
+    <string name="RSASECRET">MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCVZ85khr+EOz4CLrBS81U5cErMpxob+qZKngmR9Vlcu8t3ICjFRyAP8NkBJwZ0lKh7sWACZdyid15+qT6KfPf/3qvyS/xdnyCrAq8xUi1Md75SFUBD60VvzX4RtlyoWvgMpGq4KHoyo6FaPZ0hRPUchigSNgopPUTT7mO40aSOpsMJQ9PFd6cGtL6Zjh0w7f29Uup/03nEllTMh1TP5rb0M9QTVAoQ5TFrmoriGM19PZS97ehSJ7bwmOfKSy/EoizT23GedrY7/nu8b1hG7BvVfCqzNiRQqjtfPEkfw+BcgdWiiPL0xr1HRsq2DNwyvuONoYFZ4FjqE3FhLcM+df+bAgMBAAECggEAJpBIwcHWJTd1ZfLPKFoOoWjOpcxr/NTRn2jzZ21Ax6LhfbobS/Bz4il0mcuM6wKEColaEsRgEr9k8KSWtABVswGyuDPMzA2KzRlARybC8n3l7iH2GJHdtmIALGo5uGrio8C8mxQ3lmKN/1DwAepeqiImraytKr/ZyCo8KzRRmVAlB/9Lt0/W8F0rQbtIQZYjI6vxJ2dR8Y60+dh5zC22vunAlVPAe+7aZGVo6erlzOkGMAQ/JvRmvcD7F0gyZ5qx5JgcOLZxM83Ez4a2tsQA8FHQ12FgP6i1LUIsmzTt/hm6a56fGwgIYgs3K6z6m+GU99xKZaNrCy0Gm7x/88NlgQKBgQDFxpcJFzLx8uqW7BeMIDN+FrDQiUJxGJsVcW2+a6Q+ZRhlAqd45zmZyNFEVztOHZdbWbqyseTYW03k34gUKvmxcWe+3f3L9gZdyurlWNFXk3X9g8J5ho4IIXcVeQFlF2Zk13c/NvHkuL0uwAdH/2ayjHLxXyAmMICAm3sY4Rq8MQKBgQDBY8hHV5cABAyRJSlqbmZIx4RtVDTCUUqCW+zrIUFlyKr38oXbr3Ya8kVZ7HMVE//EqlKUMV5yjqNwevdDUFWWdEd+7ARMAJzC4U0lqnJNyYTbgZ+95xd3QJCRs3LcUj9UYdg2toUSCHW8TZzhXnEt5UGoOX9bAGXvu0yrc0ehiwKBgDAA8rnnIpttTZlSNqjxS+5HzaTgG/tdcI702CFG+TeXzCMAUOvcm7OC9aAz2BYuwoUOs20aFqSZDMAHrXzPrYlvMDI4qZhu3762OOtv8mfiR9o/t91NVn4MuV3B4B/MXTMOxUfXq0DLwkdtnpbQG/osct25LBF45kfQ9UDlqlqRAoGAfQNAy4V+kj8L1KP+MtPtAO0g2P/PHzInhT9hVtnniaF/i8rV5x50rZShajDkb+K+uuYTfcKwOEOmuaZzwqriuOCv+wcc+/iFXaEBGvEk9M3pOXCAz+TcEXXGPrmO7YepcqXRfATe3rpjSXeuiy1e4nlJyTJp9my6eI9OT6K00mMCgYByuEtlNeQYl6+LF233i3K/+r5SUCs+7jRf/97spr49f9/tGQgjGiPkBKdZUj7VzE7WzUOuvG5HZJUDtpwpCjh5KNu/hixJkHO+rj5WgOUELDY4Mg7zYbTjyYgUT64Tvssuvo0CsBhmsk6nfpLHkJ3W8I/JPtDiAysnpd7Uem/6LQ==</string>
+
+    <string name="upload_photos_tips">如您在上传照片时出现问题或者疑问，可拨打</string>
+    <string name="protocol_name">《友禾卡管家用户协议》</string>
+    <string name="hotline_no">客服电话：020-28185755</string>
+    <string name="kefu_no">020-28185755</string>
+    <string name="kefu">02028185755</string>
+    <string name="zhaoshang_no">020-28185755</string>
+    <string name="zhaoshang">02028185755</string>
+    <string name="change_pwd_tips">如果您忘记注册相关资料，请联系客服，我们将第一时间内为您解决。</string>
+    <string name="protocol_titie">友禾卡管家使用协议</string>
+    <string name="avl_withdraw_amt">可提现: %1$s元</string>
+    <string name="about_company">\t\t\t\t广州友禾信息科技有限公司是一家多渠道金融支付业务服务公司；公司专注于POS支付渠道领域，金融专业化服务，以渠道整合，服务提供为主要导向，打造一体化服务平台，成长为一家全国统一管理服务型公司。为千百万持卡人和商店提供完整的电子支付服务和电子商务服务,并加载效果显著的营销增值服务，帮助商家赚到更多的钱。</string>
+    <string name="about_copyright">\@2017 友禾卡管家 copyright</string>
+
+    <!--关于我们-->
+    <string name="about_us">关于我们</string>
+    <string name="update_version">版本更新</string>
+    <string name="update_later">稍后更新</string>
+    <string name="update_now">立即更新</string>
+    <string name="is_the_latest_version">当前已是最新版本</string>
+
+
+    <string name="errcode_success">分享成功</string>
+    <string name="errcode_cancel">分享取消</string>
+    <string name="errcode_deny">分享被拒绝</string>
+    <string name="errcode_unknown">分享返回</string>
+
+    <string name="invite_you">%1$s邀您加入%2$s微创业平台</string>
+    <string name="day_profit">昨日收益%1$s元</string>
+
+    <string name="merchlevel_tips">提示：你还需邀请%1$s个人注册即可升级为%2$s</string>
+    <string name="title_activity_set_plan_card">SetPlanCardActivity</string>
+
+    <string name="empty_view_hint">暂无数据</string>
+    <string name="error_view_hint">加载失败</string>
+    <string name="no_network_view_hint">网络异常</string>
+
+
+</resources>

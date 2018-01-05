@@ -1,0 +1,159 @@
+package com.yzf.Cpaypos.present;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.model.servicesmodels.BaseResults;
+import com.yzf.Cpaypos.model.servicesmodels.GetWhiteCardListResult;
+import com.yzf.Cpaypos.net.Api;
+import com.yzf.Cpaypos.ui.activitys.BankCardActivity;
+import com.yzf.Cpaypos.ui.activitys.CreditWithDrawActivity;
+
+import org.json.JSONException;
+
+import java.net.UnknownHostException;
+
+import cn.droidlover.xdroidmvp.event.BusProvider;
+import cn.droidlover.xdroidmvp.event.IBus;
+import cn.droidlover.xdroidmvp.event.IEvent;
+import cn.droidlover.xdroidmvp.kit.Kits;
+import cn.droidlover.xdroidmvp.log.Logger;
+import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.net.ApiSubcriber;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.net.XApi;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+/**
+ * ClaseName：PBankCard
+ * Description：银行卡管理逻辑
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/4/1 11:50
+ * Modified By：
+ * Fixtime：2017/4/1 11:50
+ * FixDescription：
+ */
+
+public class PCreditWithDraw extends XPresent<CreditWithDrawActivity> {
+    public void getWhiteCardList(String merchId) {
+        Api.getAPPService().getWhiteCardList(merchId)
+                .compose(XApi.<GetWhiteCardListResult>getApiTransformer())
+                .compose(XApi.<GetWhiteCardListResult>getScheduler())
+                .compose(getV().<GetWhiteCardListResult>bindToLifecycle())
+                .subscribe(new ApiSubcriber<GetWhiteCardListResult>() {
+                    @Override
+                    public void onNext(GetWhiteCardListResult getWhiteCardListResult) {
+                        if (getWhiteCardListResult.getRespCode().equals("00")) {
+                            if (getWhiteCardListResult.getData() != null && getWhiteCardListResult.getData().size() > 0) {
+                                Gson gson = new Gson();
+                                AppUser.getInstance().setCardWhiteInfo(gson.toJson(getWhiteCardListResult.getData()));
+//                                getV().setAdapter(getWhiteCardListResult);
+                            } else {
+//                                getV().showErrorView("还没有绑定过银行卡", getImgId("execption"));
+                            }
+                        } else {
+//                            getV().showErrorView(getWhiteCardListResult.getRespMsg(), getImgId("execption"));
+                        }
+
+                    }
+
+                    @Override
+                    protected void onFail(NetError error) {
+//                        getV().showErrorView(error, getImgId("execption"));
+                    }
+
+                });
+    }
+
+    public void deleteBankCard(String userId, String acctNo) {
+        Api.getAPPService().deleteBankCard(userId, acctNo)
+                .compose(XApi.<BaseResults>getApiTransformer())
+                .compose(XApi.<BaseResults>getScheduler())
+                .compose(getV().<BaseResults>bindToLifecycle())
+                .subscribe(new ApiSubcriber<BaseResults>() {
+                    @Override
+                    public void onNext(BaseResults baseResults) {
+                        IBus.IEvent iEvent = new IEvent();
+                        iEvent.setId("refresh_card");//交易成功后发消息去更新金额
+                        BusProvider.getBus().post(iEvent);
+//                        getV().refresh(baseResults.getRespMsg());
+                    }
+
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showError(error);
+                    }
+
+                });
+    }
+
+    public void gethtml(String card_no)
+    {
+        String ORDER_AMT = AppUser.getInstance().getAMT();
+        if (!AppTools.isEmpty(ORDER_AMT)) {
+            ORDER_AMT = AppTools.formatAmt(ORDER_AMT);
+        }
+        String ORDER_ID = AppTools.craeateOrderId();
+        AppUser.getInstance().setOrderId(ORDER_ID);
+        String ORDER_TIME = Kits.Date.getyyyyMMddHHmmss();
+        String USER_ID = AppUser.getInstance().getUserId();
+        String SIGN_TYPE = "03";
+//        String BUS_CODE = "3001";
+        String BUS_CODE = "7601";
+        String USER_TYPE = "02";
+        String CCT = "CNY";
+        String CARD_NO = card_no;
+        String PAY_TYPE = "02";
+
+        Api.getAPPService().h5QuickPay(ORDER_ID, ORDER_AMT, ORDER_TIME, USER_TYPE, USER_ID, SIGN_TYPE, BUS_CODE, CCT, CARD_NO, PAY_TYPE)//返回的是string，不是json
+                .compose(getV().<String>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Logger.e(e.toString());
+                        NetError error = null;
+                        if (!(e instanceof NetError)) {
+                            if (e instanceof UnknownHostException) {
+                                error = new NetError(e, NetError.NoConnectError);
+                            } else if (e instanceof JSONException
+                                    || e instanceof JsonParseException
+                                    || e instanceof JsonSyntaxException) {
+                                error = new NetError(e, NetError.ParseError);
+                            } else {
+                                error = new NetError(e, NetError.OtherError);
+                            }
+                        } else {
+                            error = (NetError) e;
+                        }
+                        getV().showError(error);
+                    }
+
+                    @Override
+                    public void onNext(String result) {
+                        getV().toWebView(result);
+                    }
+                });
+    }
+
+    private int getImgId(String imgName) {
+        int id = -1;
+        try {
+            id = getV().getResources().getIdentifier(imgName, "mipmap", getV().getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+}

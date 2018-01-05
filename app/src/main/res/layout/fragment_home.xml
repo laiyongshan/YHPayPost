@@ -1,0 +1,399 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_toolbar" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/home_swiperefreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:id="@+id/convenientBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@color/bg_white"
+                    android:visibility="visible"
+                    app:canLoop="true" />
+
+                <!--        <ImageView
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/banner2"/>-->
+
+                <com.sunfusheng.marqueeview.MarqueeView
+                    android:id="@+id/marqueeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@color/bg_white"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="12dp"
+                    android:visibility="gone"
+                    app:mvAnimDuration="1000"
+                    app:mvDirection="bottom_to_top"
+                    app:mvInterval="5000"
+                    app:mvSingleLine="true"
+                    app:mvTextColor="@color/text_6"
+                    app:mvTextSize="@dimen/text_sub" />
+
+                <TextView
+                    android:id="@+id/notice_tv"
+                    style="@style/text_normal_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp"
+                    android:background="@color/bg_white"
+                    android:drawableLeft="@mipmap/icon_notice"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:text="智能还款，让天下没有难管的信用卡"
+                    android:textSize="@dimen/text_sub">
+
+                </TextView>
+
+                <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+                    android:id="@+id/home_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/bg_white"
+                    android:visibility="visible"></com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+
+                <LinearLayout
+                    android:id="@+id/home_plan_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/bg_white"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        style="@style/text_normal_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="我的还款计划"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/bank_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/selector_foreground"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/home_planbank_iv"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:background="@drawable/circle_gray_bg"
+                                android:padding="3dp"
+                                android:src="@mipmap/bank" />
+
+                            <TextView
+                                android:id="@+id/home_planbankname_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text=""
+                                android:textColor="@color/text_theme"
+                                android:textSize="@dimen/text_14" />
+
+                            <TextView
+                                android:id="@+id/home_planbankno_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text=""
+                                android:textColor="@color/text_6"
+                                android:textSize="@dimen/text_tip" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/home_planamt_tv"
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="0.00"
+                                    android:textColor="@color/text_yellow"
+                                    android:textSize="@dimen/text_15" />
+
+                                <TextView
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="还款金额"
+                                    android:textSize="@dimen/text_sub" />
+
+                                <View
+                                    android:layout_width="0.5dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_weight="1"
+                                    android:background="@color/line_gray" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/home_plancount_tv"
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="0"
+                                    android:textColor="@color/text_yellow"
+                                    android:textSize="@dimen/text_15" />
+
+                                <TextView
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="还款期数"
+                                    android:textSize="@dimen/text_sub" />
+
+                                <View
+                                    android:layout_width="0.5dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_weight="1"
+                                    android:background="@color/line_gray" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/home_planprogress_tv"
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="0/0"
+                                    android:textColor="@color/text_yellow"
+                                    android:textSize="@dimen/text_15" />
+
+                                <TextView
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="当前进度"
+                                    android:textSize="@dimen/text_sub" />
+
+                                <View
+                                    android:layout_width="0.5dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_weight="1"
+                                    android:background="@color/line_gray" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/home_planfee_tv"
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="0.00"
+                                    android:textColor="@color/text_yellow"
+                                    android:textSize="@dimen/text_15" />
+
+                                <TextView
+                                    style="@style/text_normal_color_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="服务费用"
+                                    android:textSize="@dimen/text_sub" />
+
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/home_loans_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/bg_white"
+                    android:src="@mipmap/loan_bg"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/home_credit_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/bg_white"
+                    android:src="@mipmap/credit_bg" />
+
+                <!--
+                                <LinearLayout
+                                    android:id="@+id/home_loans_ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:orientation="vertical"
+                                    android:background="@color/bg_white">
+                
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                
+                                        <TextView
+                                            style="@style/text_normal_style"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textStyle="bold"
+                                            android:text="贷款申请"/>
+                
+                                        <TextView
+                                            style="@style/text_normal_color_6"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="25dp"
+                                            android:textSize="@dimen/text_sub"
+                                            android:text="快捷、快速贷款申请服务"/>
+                                    </LinearLayout>
+                
+                                    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+                                        android:id="@+id/home_loans_recyclerview"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:background="@color/bg_white"></com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+                
+                
+                                </LinearLayout>
+                -->
+
+                <!--
+                                <LinearLayout
+                                    android:id="@+id/home_credit_ll"
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:orientation="vertical"
+                                    android:background="@color/bg_white">
+                
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                
+                                        <TextView
+                                            style="@style/text_title_style"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="信用卡申请"/>
+                
+                                        <TextView
+                                            style="@style/text_normal_color_6"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="25dp"
+                                            android:text="快捷、快速信用卡申请服务"/>
+                                    </LinearLayout>
+                
+                
+                                    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+                                        android:id="@+id/home_credit_recyclerview"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:background="@color/bg_white"></com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+                
+                                </LinearLayout>
+                -->
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

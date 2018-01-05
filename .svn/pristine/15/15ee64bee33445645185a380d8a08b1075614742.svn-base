@@ -1,0 +1,134 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/bg_white"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/account_adapter_type_tv"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="账户余额" />
+
+        <TextView
+            android:id="@+id/account_adapter_amt_tv"
+            style="@style/text_normal_color_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="￥00.00"
+            android:textColor="@color/text_red"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/selector_foreground"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:text="可用金额"
+                        android:textColor="@color/text_6"
+                        android:textSize="@dimen/text_tip" />
+
+
+                    <TextView
+                        android:id="@+id/account_adapter_avlamt_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:text="0.00"
+                        android:textColor="@color/btn_theme" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@color/line_gray"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/selector_foreground"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:text="冻结金额"
+                        android:textColor="@color/text_6"
+                        android:textSize="@dimen/text_tip" />
+
+
+                    <TextView
+                        android:id="@+id/account_adapter_fznamt_tv"
+                        style="@style/text_normal_color_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:text="0.00"
+                        android:textColor="@color/text_6" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/line_h"></include>
+
+        <TextView
+            android:id="@+id/account_adapter_withdraw_tv"
+            style="@style/text_normal_color_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/selector_foreground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="提现"
+            android:textColor="@color/text_red" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

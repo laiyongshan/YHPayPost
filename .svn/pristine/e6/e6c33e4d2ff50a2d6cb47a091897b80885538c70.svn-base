@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#d53c27</color>
+    <color name="colorPrimaryDark">#d53c27</color>
+    <color name="colorAccent">#dd6352</color>
+
+    <!--字体颜色-->
+    <color name="text_main">#333333</color>
+    <color name="text_6">#666666</color>
+    <color name="text_9">#999999</color>
+    <color name="text_tip">#ababab</color>
+    <color name="text_hint">#cccccc</color>
+    <color name="text_theme">#d53c27</color>
+    <color name="text_white">#ffffff</color>
+    <color name="text_gray">#626262</color>
+    <color name="text_red">#d53c27</color>
+    <color name="text_yellow">#f0922e</color>
+
+
+    <!-- app颜色 -->
+    <color name="theme">#d53c27</color>
+    <color name="light_theme">#d94f3c</color>
+    <color name="main_bg">#f2f2f2</color>
+    <color name="bg_white">#ffffff</color>
+    <color name="bg_gray">#f4f4f4</color>
+    <color name="line_white">#ffffff</color>
+    <color name="line_gray">#cccccc</color>
+    <color name="black_bar">#373a41</color>
+
+    <!-- 按钮颜色 -->
+    <color name="btn_white">#ffffff</color>
+    <color name="btn_white_p">#e0dddd</color>
+
+    <color name="btn_theme">#f0922e</color>
+    <color name="btn_theme_p">#d1ac85</color>
+
+
+</resources>

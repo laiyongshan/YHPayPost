@@ -1,0 +1,317 @@
+package com.yzf.Cpaypos.ui.fragments;
+
+import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.FileProvider;
+import android.view.View;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.tbruyelle.rxpermissions.RxPermissions;
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.adapter.HolderView.AdHolderView;
+import com.yzf.Cpaypos.adapter.HomeAdapter;
+import com.yzf.Cpaypos.kit.AppConfig;
+import com.yzf.Cpaypos.kit.AppKit;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.kit.DividerGridItemDecoration;
+import com.yzf.Cpaypos.kit.utils.LocationUtils;
+import com.yzf.Cpaypos.model.HomeSource;
+import com.yzf.Cpaypos.model.servicesmodels.GetBannerListResult;
+import com.yzf.Cpaypos.present.PHomeFragment;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import cn.droidlover.xdroidmvp.mvp.XFragment;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.router.Router;
+import cn.droidlover.xrecyclerview.RecyclerItemCallback;
+import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
+import cn.droidlover.xrecyclerview.XRecyclerView;
+import rx.functions.Action1;
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：HomeFragment
+ * Description: 首页界面
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/5/18 11:56
+ * Modified By：
+ * Fixtime：2017/5/18 11:56
+ * FixDescription：
+ */
+
+public class HomeFragment extends XFragment<PHomeFragment> implements OnItemClickListener {
+
+    HomeAdapter adapter;
+    @BindView(R.id.contentLayout)
+    XRecyclerContentLayout contentLayout;
+    @BindView(R.id.convenientBanner)
+    ConvenientBanner convenientBanner;
+    /*@BindView(R.id.toolbar)
+    Toolbar toolbar;*/
+
+    private List<GetBannerListResult.DataBean> bannerList;
+    private FragmentManager mFragmentManager;
+
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        initView();
+        initAdapter();
+//        setBanner();
+        getP().getBannerList(AppConfig.TOPBRANCHNO);
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initView() {
+        /*((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("收银台");
+        toolbar.setVisibility(View.GONE);*/
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
+    public PHomeFragment newP() {
+        return new PHomeFragment();
+    }
+
+
+    public void initAdapter() {
+        contentLayout.getRecyclerView().gridLayoutManager(context, 3);
+        contentLayout.getSwipeRefreshLayout().setColorSchemeColors(getResources().getColor(R.color.theme));
+        contentLayout.getRecyclerView().addItemDecoration(new DividerGridItemDecoration(context));
+        if (adapter == null) {
+            adapter = new HomeAdapter(context);
+            adapter.setRecItemClick(new RecyclerItemCallback<HomeSource, HomeAdapter.ViewHolder>() {
+                @Override
+                public void onItemClick(int position, final HomeSource item, int tag, HomeAdapter.ViewHolder holder) {
+                    super.onItemClick(position, item, tag, holder);
+                    switch (tag) {
+                        case HomeAdapter.TAG_VIEW:
+                            if (item.getId()==4||item.getId()==5) {
+                                getRxPermissions()
+                                        .request(Manifest.permission.READ_PHONE_STATE,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION)
+                                        .subscribe(new Action1<Boolean>() {
+                                            @Override
+                                            public void call(Boolean granted) {
+                                                if (granted) {
+                                                    //TODO 许可
+                                                    LocationUtils.getInstance(context).showLocation();
+                                                    getP().toPay(item);
+                                                } else {
+                                                    //TODO 未许可
+                                                    showToast("权限未获取");
+                                                }
+                                            }
+                                        });
+                            }else {
+                                getP().toPay(item);
+                            }
+
+                            break;
+                    }
+                }
+            });
+        }
+        contentLayout.getRecyclerView().setAdapter(adapter);
+        adapter.setData(getData());
+
+        contentLayout.getRecyclerView()
+                .setOnRefreshAndLoadMoreListener(new XRecyclerView.OnRefreshAndLoadMoreListener() {
+                    @Override
+                    public void onRefresh() {
+                        getP().refresh(AppUser.getInstance().getUserId());
+                    }
+
+                    @Override
+                    public void onLoadMore(int page) {
+//                        getP().loadData(getType(), page);
+                    }
+                });
+        contentLayout.loadingView(View.inflate(getContext(), R.layout.view_loading, null));
+    }
+
+    public void setBanner(GetBannerListResult getBannerListResult) {
+        bannerList = new ArrayList<>();
+        if (getBannerListResult.getData() != null && getBannerListResult.getData().size() > 0) {
+            bannerList.addAll(getBannerListResult.getData());
+        }
+        showBanner();
+
+    }
+
+    public void setBanner() {
+        bannerList = new ArrayList<>();
+        GetBannerListResult.DataBean dataBean=new GetBannerListResult.DataBean();
+        dataBean.setUrl("banner1.png");
+        bannerList.add(dataBean);
+        dataBean=new GetBannerListResult.DataBean();
+        dataBean.setUrl("banner2.png");
+        bannerList.add(dataBean);
+        dataBean=new GetBannerListResult.DataBean();
+        dataBean.setUrl("banner3.png");
+        bannerList.add(dataBean);
+        showBanner();
+
+    }
+
+    private void showBanner() {
+        if (bannerList.size() > 0) {
+            convenientBanner.setPages(
+                    new CBViewHolderCreator<AdHolderView>() {
+                        @Override
+                        public AdHolderView createHolder() {
+                            return new AdHolderView();
+                        }
+                    }, bannerList)
+                    //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
+                    .setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused})
+                    //设置指示器的方向
+                    //                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+                    //                .setOnPageChangeListener(this)//监听翻页事件
+                    .setOnItemClickListener(this);
+        }
+        convenientBanner.startTurning(3000);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    private List<HomeSource> getData() {
+        List<HomeSource> list = new ArrayList<>();
+        HomeSource homeSource = new HomeSource();
+        homeSource.setId(0);
+        homeSource.setImgRes(R.mipmap.icon_receive);
+        homeSource.setStrRes("商户收款");
+        HomeSource homeSource1 = new HomeSource();
+        homeSource1.setId(1);
+        homeSource1.setImgRes(R.mipmap.icon_finance);
+        homeSource1.setStrRes("信用卡管理");
+        HomeSource homeSource2 = new HomeSource();
+        homeSource2.setId(2);
+        homeSource2.setImgRes(R.mipmap.icon_shop);
+        homeSource2.setStrRes("信用卡取款");
+        HomeSource homeSource3 = new HomeSource();
+        homeSource3.setId(3);
+        homeSource3.setImgRes(R.mipmap.icon_convenient);
+        homeSource3.setStrRes("便民服务");
+        HomeSource homeSource4= new HomeSource();
+        homeSource4.setId(4);
+        homeSource4.setImgRes(R.mipmap.icon_loan);
+        homeSource4.setStrRes("我要借款");
+        HomeSource homeSource5= new HomeSource();
+        homeSource5.setId(5);
+        homeSource5.setImgRes(R.mipmap.icon_apply);
+        homeSource5.setStrRes("信用卡申请");
+        list.add(homeSource1);
+        list.add(homeSource2);
+        list.add(homeSource4);
+        list.add(homeSource5);
+        list.add(homeSource);
+        list.add(homeSource3);
+        return list;
+    }
+
+    public void JumpActivity(Class<?> activity) {
+        Router.newIntent(context)
+                .to(activity)
+                .launch();
+    }
+
+    public void JumpActivity(Class<?> activity, String serviceId) {
+        Router.newIntent(context)
+                .to(activity)
+                .putString("serviceId", serviceId)
+                .launch();
+    }
+
+    public void showToast(String msg) {
+        getvDelegate().toastShort(msg);
+    }
+
+    /**
+     * 已经刷新完毕
+     */
+    public void refreshed() {
+        adapter.setData(getData());
+    }
+
+    /**
+     * 显示单按钮对话框
+     *
+     * @param msg
+     */
+    public void showErrorDialog(String msg) {
+        refreshed();
+        getvDelegate().showErrorDialog(msg);
+    }
+
+    public void showSnackbar(final String msg) {
+        getvDelegate().showSnackbar(contentLayout, msg, "确定", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast(msg);
+            }
+        });
+    }
+
+    /**
+     * 显示双按钮对话框
+     *
+     * @param msg
+     * @param callback
+     */
+    public void showNoticeDialog(String msg, MaterialDialog.SingleButtonCallback callback) {
+        refreshed();
+        getvDelegate().showNoticeDialog(msg, callback);
+    }
+
+    public void showError(NetError error) {
+        refreshed();
+        getvDelegate().showError(error);
+    }
+
+}

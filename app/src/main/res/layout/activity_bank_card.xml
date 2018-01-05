@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.BankCardActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <com.yzf.Cpaypos.widget.MultipleStatusView
+        android:id="@+id/bankcard_multiplestatusview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        app:emptyView="@layout/custom_empty_view"
+        app:errorView="@layout/custom_error_view"
+        app:loadingView="@layout/custom_loading_view"
+        app:noNetworkView="@layout/custom_no_network_view">
+
+        <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+            android:id="@+id/bankcard_swipemenurecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:recyclerBackgroundColor="@color/bg_white"
+            app:recyclerScrollbarNone="true"
+            app:recyclerScrollbarStyle="outsideOverlay" />
+
+    </com.yzf.Cpaypos.widget.MultipleStatusView>
+
+</LinearLayout>

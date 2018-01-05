@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:qinc="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.PayBondActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/bg_white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:divider="@drawable/divider_horizontal"
+            android:dividerPadding="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+
+            <TextView
+                android:id="@+id/bond_total_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="当月总金额:" />
+
+
+            <TextView
+                android:id="@+id/bond_fee_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="还款服务费:" />
+
+            <TextView
+                android:id="@+id/bond_money_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="还款保留金:" />
+
+            <TextView
+                android:id="@+id/bond_months_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="连续还款月数:" />
+
+            <TextView
+                android:id="@+id/bond_days_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="当月还款日期:" />
+
+            <TextView
+                android:id="@+id/bond_count_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="当月还款笔数:" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/bond_tips_tv"
+        style="@style/text_tip_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="tips：规划确定后将从卡中扣除0元，其中养卡保留金0元，手续费0元。"
+        android:textColor="@color/x_red" />
+
+
+    <com.yzf.Cpaypos.widget.StateButton
+        android:id="@+id/bond_confirm_bt"
+        style="@style/button_text"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:text="确认规划"
+        app:normalBackgroundColor="@color/theme"
+        app:pressedBackgroundColor="@color/light_theme"
+        app:radius="5dp" />
+</LinearLayout>

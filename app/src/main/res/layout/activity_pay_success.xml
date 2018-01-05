@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.PaySuccessActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/bg_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/icon_paysuccess" />
+
+            <TextView
+                style="@style/text_normal_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="支付成功"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/success_payamt_tv"
+                style="@style/text_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="￥00.00"
+                android:textSize="@dimen/text_32"
+                android:textStyle="bold" />
+
+            <include layout="@layout/line_h"></include>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/text_tip_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还款总金额" />
+
+                <TextView
+                    android:id="@+id/success_total_tv"
+                    style="@style/text_tip_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center_vertical|right"
+                    android:maxLines="1"
+                    android:text="1500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/text_tip_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还款服务费" />
+
+                <TextView
+                    android:id="@+id/success_fee_tv"
+                    style="@style/text_tip_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center_vertical|right"
+                    android:maxLines="1"
+                    android:text="1500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/text_tip_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还款保留金" />
+
+                <TextView
+                    android:id="@+id/success_money_tv"
+                    style="@style/text_tip_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center_vertical|right"
+                    android:maxLines="1"
+                    android:text="1500" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></LinearLayout>
+
+            <Button
+                android:id="@+id/success_confirm_bt"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/success_btn"
+                android:text="完成"
+                android:textColor="@color/text_yellow"
+                android:textSize="@dimen/text_title" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

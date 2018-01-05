@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    tools:context="com.yzf.Cpaypos.ui.activitys.UploadPhotosActivity">
+
+    <include layout="@layout/title_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_tip_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="请上传相关证件照片"
+                android:textColor="@color/text_6" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="身份证人像面"
+                            android:textColor="@color/text_main"
+                            android:textSize="@dimen/text_14" />
+
+                        <ImageView
+                            android:id="@+id/ulphotos_p1_iv"
+                            android:layout_width="320dp"
+                            android:layout_height="170dp"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/img_card_zm" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_white"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="身份证国徽面"
+                            android:textColor="@color/text_main"
+                            android:textSize="@dimen/text_14" />
+
+                        <ImageView
+                            android:id="@+id/ulphotos_p2_iv"
+                            android:layout_width="320dp"
+                            android:layout_height="170dp"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/img_card_fm" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_white"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="银行卡正面照"
+                            android:textColor="@color/text_main"
+                            android:textSize="@dimen/text_14" />
+
+                        <ImageView
+                            android:id="@+id/ulphotos_p3_iv"
+                            android:layout_width="320dp"
+                            android:layout_height="170dp"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/img_bank" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/bg_white"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="手持身份证照"
+                            android:textColor="@color/text_main"
+                            android:textSize="@dimen/text_14" />
+
+                        <ImageView
+                            android:id="@+id/ulphotos_p4_iv"
+                            android:layout_width="320dp"
+                            android:layout_height="170dp"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/img_other" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <com.yzf.Cpaypos.widget.StateButton
+                    android:id="@+id/ulphotos_confirm_bt"
+                    style="@style/button_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="提交"
+                    app:normalBackgroundColor="@color/theme"
+                    app:pressedBackgroundColor="@color/light_theme"
+                    app:radius="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

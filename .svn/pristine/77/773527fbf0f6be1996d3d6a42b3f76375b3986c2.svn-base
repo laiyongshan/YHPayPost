@@ -1,0 +1,395 @@
+package com.yzf.Cpaypos.ui.activitys;
+
+import android.app.FragmentManager;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.adapter.PlanCardAdapter;
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.kit.DividerListItemDecoration;
+import com.yzf.Cpaypos.model.ChooseItem;
+import com.yzf.Cpaypos.model.servicesmodels.GetPlanCardResults;
+import com.yzf.Cpaypos.model.servicesmodels.GetWhiteCardListResult;
+import com.yzf.Cpaypos.present.PPlanCard;
+import com.yzf.Cpaypos.widget.BottomDialog;
+import com.yzf.Cpaypos.widget.DialogPopup;
+import com.yzf.Cpaypos.widget.StateButton;
+import com.yzf.Cpaypos.widget.StateView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.event.BusProvider;
+import cn.droidlover.xdroidmvp.event.IEvent;
+import cn.droidlover.xdroidmvp.log.Logger;
+import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.router.Router;
+import cn.droidlover.xrecyclerview.RecyclerItemCallback;
+import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
+import cn.droidlover.xrecyclerview.XRecyclerView;
+import rx.functions.Action1;
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：PlanCardActivity
+ * Description:
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/9/5 10:21
+ * Modified By：
+ * Fixtime：2017/9/5 10:21
+ * FixDescription：
+ */
+
+public class PlanCardActivity extends XActivity<PPlanCard> implements PlanCardAdapter.ICallBack {
+
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.plancard_contentLayout)
+    XRecyclerContentLayout contentLayout;
+    @BindView(R.id.plancard_cardno_tv)
+    TextView plancardCardnoTv;
+    @BindView(R.id.plancard_name_tv)
+    TextView plancardNameTv;
+    @BindView(R.id.plancard_day1_tv)
+    TextView plancardDay1Tv;
+    @BindView(R.id.plancard_day2_tv)
+    TextView plancardDay2Tv;
+    @BindView(R.id.plancard_limit_tv)
+    TextView plancardLimitTv;
+    @BindView(R.id.plancard_bill_tv)
+    TextView plancardBillTv;
+    @BindView(R.id.cgibindcard_confirm_bt)
+    StateButton cgibindcardConfirmBt;
+    StateView errorView;
+    PlanCardAdapter adapter;
+    private GetWhiteCardListResult.DataBean dataBean = new GetWhiteCardListResult.DataBean();
+    private int delposition = 0;
+
+    private int page_num = 10;// 每页10行
+    protected static final int MAX_PAGE = 30;
+    private String begin_time;
+    private String end_time;
+    private String status;
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        useEventBus(true);
+        dataBean = (GetWhiteCardListResult.DataBean) getIntent().getSerializableExtra("dataBean");
+        initView();
+        initAdapter();
+        contentLayout.showLoading();
+        getP().GetPlanCard(1, AppUser.getInstance().getUserId(), dataBean.getAcctNo(), page_num, begin_time, end_time, status);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        PlanCardAdapter.setiCallBack(this);
+//        contentLayout.showLoading();
+//        getP().GetPlanCard(1,AppUser.getInstance().getUserId(), dataBean.getAcctNo(),page_num,begin_time,end_time,status);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_plan_card;
+    }
+
+    @Override
+    public PPlanCard newP() {
+        return new PPlanCard();
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initView() {
+        initToolbar();
+        String acctno = dataBean.getAcctNo();
+        acctno = AppTools.isEmpty(acctno) ? "" : acctno.substring(0, 4) + "****" + acctno.substring(acctno.length() - 4, acctno.length());
+        plancardCardnoTv.setText(acctno);
+        plancardNameTv.setText(dataBean.getCardDesc());
+        plancardDay1Tv.setText(dataBean.getAdd3() + "日");
+        plancardDay2Tv.setText(dataBean.getAdd4() + "日");
+        plancardLimitTv.setText(dataBean.getCardLimit() + "元");
+    }
+
+    @Override
+    public void bindEvent() {
+        BusProvider.getBus().toObservable(IEvent.class)
+                .subscribe(new Action1<IEvent>() {
+                    @Override
+                    public void call(IEvent iEvent) {
+                        //TODO 事件处理
+                        if (iEvent.getId().equals("refresh_plan")) {
+                            getP().GetPlanCard(1, AppUser.getInstance().getUserId(), dataBean.getAcctNo(), page_num, begin_time, end_time, status);
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 删除规划后刷新规划列表
+     *
+     * @param msg
+     */
+    public void refresh(String msg) {
+        getvDelegate().toastShort(msg);
+        adapter.removeElement(delposition);
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        title.setText(dataBean.getCardDesc());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    public void initAdapter() {
+        if (adapter == null) {
+            adapter = new PlanCardAdapter(context);
+        }
+        adapter.setRecItemClick(new RecyclerItemCallback<GetPlanCardResults.DataBean, PlanCardAdapter.ViewHolder>() {
+            @Override
+            public void onItemClick(int position, GetPlanCardResults.DataBean item, int tag, PlanCardAdapter.ViewHolder holder) {
+                super.onItemClick(position, item, tag, holder);
+                switch (tag) {
+                    case PlanCardAdapter.TAG_VIEW:
+                        if (item.getStatus().equals("00")) {
+                            Router.newIntent(context)
+                                    .to(PlanCardDetailActivity.class)
+                                    .putSerializable("dataBean", item)
+                                    .launch();
+                        } else {
+                            if (item.getDetailList().size() > 0) {
+                                Router.newIntent(context)
+                                        .to(PlanCardDetailsActivity.class)
+                                        .putSerializable("dataBean", item)
+                                        .launch();
+                            } else {
+                                showToast("暂无数据");
+                            }
+                        }
+
+                        break;
+                }
+            }
+        });
+
+        contentLayout.getSwipeRefreshLayout().setColorSchemeColors(getResources().getColor(R.color.theme));
+        contentLayout.getRecyclerView().verticalLayoutManager(this);
+        contentLayout.getRecyclerView().addItemDecoration(new DividerListItemDecoration(context, DividerListItemDecoration.VERTICAL_LIST));
+        contentLayout.getRecyclerView().setAdapter(adapter);
+        contentLayout.getRecyclerView().setOnRefreshAndLoadMoreListener(new XRecyclerView.OnRefreshAndLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                Logger.i("onRefresh");
+                getP().GetPlanCard(1, AppUser.getInstance().getUserId(), dataBean.getAcctNo(), page_num, begin_time, end_time, status);
+            }
+
+            @Override
+            public void onLoadMore(int page) {
+                getP().GetPlanCard(page, AppUser.getInstance().getUserId(), dataBean.getAcctNo(), page_num, begin_time, end_time, status);
+            }
+        });
+        if (errorView == null) {
+            errorView = new StateView(context);
+        }
+        contentLayout.errorView(errorView);
+        contentLayout.loadingView(View.inflate(context, R.layout.view_loading, null));
+        contentLayout.emptyView(View.inflate(context, R.layout.view_empty, null));
+        contentLayout.getRecyclerView().useDefLoadMoreView();
+    }
+
+
+    @Override
+    public int getOptionsMenuId() {
+        return R.menu.menu_creditcard;
+    }
+
+    /**
+     * 标题栏监听
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                finish();
+                break;
+            case R.id.menu_text:
+                JumpActivity(ModifiedCreditCardctivity.class, true);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * activity跳转
+     */
+    public void JumpActivity(Class<?> activity, boolean isfinish) {
+        getvDelegate().dismissLoading();
+        Router.newIntent(context)
+                .to(activity)
+                .putSerializable("dataBean", dataBean)
+                .launch();
+        if (isfinish) {
+            Router.pop(context);
+        }
+    }
+
+    /**
+     * 显示Toast
+     *
+     * @param msg
+     */
+    public void showToast(String msg) {
+        getvDelegate().toastShort(msg);
+    }
+
+    /**
+     * 显示双按钮对话框
+     *
+     * @param msg
+     * @param callback
+     */
+    public void showNoticeDialog(String msg, MaterialDialog.SingleButtonCallback callback) {
+        getvDelegate().showNoticeDialog(msg, callback);
+    }
+
+    /**
+     * 显示单按钮对话框
+     *
+     * @param msg
+     */
+    public void showErrorDialog(String msg) {
+        getvDelegate().showErrorDialog(msg);
+    }
+
+    /**
+     * 显示错误信息
+     *
+     * @param error
+     */
+    public void showError(NetError error) {
+        getvDelegate().showError(error);
+    }
+
+    public void showErrorView(String msg, int id) {
+        errorView.setMsg(msg);
+        errorView.setImg(id);
+        contentLayout.showError();
+    }
+
+    public void showErrorView(NetError error, int id) {
+        errorView.setMsg(getvDelegate().getErrorType(error));
+        errorView.setImg(id);
+        contentLayout.showError();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    public void setAdapter(GetPlanCardResults getPlanCardResults, int page) {
+        List<GetPlanCardResults.DataBean> list = new ArrayList<>();
+        list = getPlanCardResults.getData();
+        if (page > 1) {
+            adapter.addData(list);
+        } else {
+            adapter.setData(list);
+        }
+        if (adapter.getItemCount() < 1) {
+            contentLayout.showEmpty();
+            return;
+        }
+        if (list.size() < page_num) {
+            contentLayout.getRecyclerView().setPage(page, page);//当条数少于默认条数时，调整最大页数
+            contentLayout.getRecyclerView().removeAllFootView();
+        } else {
+            contentLayout.getRecyclerView().setPage(page, MAX_PAGE);//必须设置setPage，否则上拉加载更多会无效
+        }
+    }
+
+    @OnClick(R.id.cgibindcard_confirm_bt)
+    public void onViewClicked() {
+        Router.newIntent(context)
+                .to(RepaymentActivity.class)
+                .putSerializable("dataBean", dataBean)
+                .launch();
+    }
+
+    @Override
+    public void delete(int position, GetPlanCardResults.DataBean item, int view, PlanCardAdapter.ViewHolder holder) {
+        switch (view) {
+            case PlanCardAdapter.TAG_VIEW:
+                final int tempposition = position;
+                final GetPlanCardResults.DataBean tempitem = item;
+                getvDelegate().showLoading();
+                delposition = tempposition;
+                showNoticeDialog("是否删除该规划", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        if (which == DialogAction.POSITIVE) {
+                            getvDelegate().showLoading();
+                            delposition = tempposition;
+                            getP().ConfirmPlanCard(AppUser.getInstance().getUserId(), tempitem.getCardId(), tempitem.getOrderId(), "delete");
+                        }
+                    }
+                });
+                break;
+        }
+    }
+}

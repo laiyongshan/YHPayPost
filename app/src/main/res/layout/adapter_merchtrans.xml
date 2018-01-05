@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:foreground="@drawable/selector_foreground">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp">
+
+
+            <ImageView
+                android:id="@+id/trans_adapter_img_iv"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/circle_gray_bg"
+                android:src="@mipmap/t00" />
+
+            <TextView
+                android:id="@+id/trans_adapter_type_tv"
+                style="@style/text_normal_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@+id/trans_adapter_img_iv"
+                android:maxLength="15"
+                android:text="交易类型" />
+
+            <TextView
+                android:id="@+id/trans_adapter_amt_tv"
+                style="@style/text_normal_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:maxLength="12"
+                android:maxLines="1"
+                android:text="00.00" />
+
+
+            <TextView
+                android:id="@+id/trans_adapter_time_tv"
+                style="@style/text_tip_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_toRightOf="@+id/trans_adapter_img_iv"
+                android:text="20170000"
+                android:textColor="@color/text_6" />
+
+            <TextView
+                android:id="@+id/trans_adapter_result_tv"
+                style="@style/text_tip_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="25dp"
+                android:ellipsize="end"
+                android:maxEms="9"
+                android:singleLine="true"
+                android:text="状态"
+                android:textColor="@color/text_6" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

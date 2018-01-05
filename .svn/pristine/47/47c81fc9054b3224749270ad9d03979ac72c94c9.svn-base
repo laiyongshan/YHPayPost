@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/bg_white"
+    android:foreground="@drawable/selector_foreground"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="13dp"
+        android:paddingTop="13dp">
+
+        <TextView
+            style="@style/text_normal_color_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxEms="8"
+            android:singleLine="true"
+            android:text="业务类型" />
+
+        <TextView
+            style="@style/text_normal_color_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="费率" />
+
+        <TextView
+            style="@style/text_normal_color_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:text="费率类型" />
+
+    </LinearLayout>
+
+    <include layout="@layout/line_h" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp">
+
+        <TextView
+            android:id="@+id/merchfee_type_adapter"
+            style="@style/text_tip_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxEms="8"
+            android:singleLine="true"
+            android:text="代付"
+            android:textColor="@color/text_red" />
+
+        <TextView
+            android:id="@+id/merchfee_fee_adapter"
+            style="@style/text_tip_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0.5"
+            android:textColor="@color/text_6" />
+
+        <TextView
+            android:id="@+id/merchfee_feetype_adapter"
+            style="@style/text_tip_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:text="按笔"
+            android:textColor="@color/text_6" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

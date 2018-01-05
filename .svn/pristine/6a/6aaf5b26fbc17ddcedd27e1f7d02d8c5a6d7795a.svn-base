@@ -1,0 +1,560 @@
+package com.yzf.Cpaypos.ui.activitys;
+
+import android.Manifest;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.yzf.Cpaypos.R;
+import com.yzf.Cpaypos.kit.AppKit;
+import com.yzf.Cpaypos.kit.AppTools;
+import com.yzf.Cpaypos.kit.AppUser;
+import com.yzf.Cpaypos.kit.utils.fileUtill;
+import com.yzf.Cpaypos.kit.utils.GetImagePath;
+import com.yzf.Cpaypos.kit.utils.ImgUtils;
+import com.yzf.Cpaypos.model.ChooseItem;
+import com.yzf.Cpaypos.present.PUploadPhotos;
+import com.yzf.Cpaypos.widget.BottomDialog;
+import com.yzf.Cpaypos.widget.StateButton;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.imageloader.ILFactory;
+import cn.droidlover.xdroidmvp.imageloader.ILoader;
+import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.router.Router;
+import rx.functions.Action1;
+
+/**
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃
+ * 　┃　　　━　　　┃ ++ + + +
+ * ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽镇楼
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * <p>
+ * ClassName：UploadPhotosActivity
+ * Description: 上传照片界面
+ * Author：JensenWei
+ * QQ: 2188307188
+ * Createtime：2017/3/22 21:04
+ * Modified By：
+ * Fixtime：2017/3/22 21:04
+ * FixDescription：
+ */
+public class UploadPhotosActivity extends XActivity<PUploadPhotos> {
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.ulphotos_p1_iv)
+    ImageView ulphotosP1Iv;
+    @BindView(R.id.ulphotos_p2_iv)
+    ImageView ulphotosP2Iv;
+    @BindView(R.id.ulphotos_p3_iv)
+    ImageView ulphotosP3Iv;
+    @BindView(R.id.ulphotos_p4_iv)
+    ImageView ulphotosP4Iv;
+    @BindView(R.id.ulphotos_confirm_bt)
+    StateButton ulphotosConfirmBt;
+
+
+    private ImageView mShowView;
+
+    private String mFilename;
+
+    private static final int IDCARDFRONT = 0;
+    private static final int IDCARDBACK = 1;
+    private static final int BANKFRONT = 2;
+    private static final int HANDFRONT = 3;
+
+    private String[] imgPath = new String[]{null, null, null, null};
+    private String[] imgFlag = new String[]{null, null, null, null};
+
+    private int mCount;
+    private String mMobile;
+    private String mFilePath;
+    private String rootPath;
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        initView();
+        mMobile = AppUser.getInstance().getUserId();
+        /*checkfile(mMobile + "_idcardfront", ulphotosP1Iv, 0);
+        checkfile(mMobile + "_idcardback", ulphotosP2Iv, 1);
+        checkfile(mMobile + "_bankfront", ulphotosP3Iv, 2);
+        checkfile(mMobile + "_idcardwithbody", ulphotosP4Iv, 3);*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        rootPath = context.getExternalFilesDir("") + File.separator + "Pictures/";
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_upload_photos;
+    }
+
+    @Override
+    public PUploadPhotos newP() {
+        return new PUploadPhotos();
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initView() {
+        initToolbar();
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        title.setText("上传认证照片");
+    }
+
+    /**
+     * 标题栏监听
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * activity跳转
+     */
+    public void JumpActivity(Class<?> activity, boolean isfinish) {
+        Router.newIntent(context)
+                .to(activity)
+                .launch();
+        if (isfinish) {
+            Router.pop(context);
+        }
+    }
+
+    /**
+     * 显示Toast
+     *
+     * @param msg
+     */
+    public void showToast(String msg) {
+        getvDelegate().toastShort(msg);
+    }
+
+    /**
+     * 显示单按钮对话框
+     *
+     * @param msg
+     */
+    public void showErrorDialog(String msg) {
+        getvDelegate().showErrorDialog(msg);
+    }
+
+    /**
+     * 显示错误信息
+     *
+     * @param error
+     */
+    public void showError(NetError error) {
+        getvDelegate().showError(error);
+    }
+
+
+    @OnClick({R.id.ulphotos_p1_iv, R.id.ulphotos_p2_iv, R.id.ulphotos_p3_iv, R.id.ulphotos_p4_iv, R.id.ulphotos_confirm_bt})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ulphotos_p1_iv:
+                mShowView = ulphotosP1Iv;
+                mCount = IDCARDFRONT;
+                takePhoto(mMobile + "_idcardfront");
+                break;
+            case R.id.ulphotos_p2_iv:
+                mShowView = ulphotosP2Iv;
+                mCount = IDCARDBACK;
+                takePhoto(mMobile + "_idcardback");
+                break;
+            case R.id.ulphotos_p3_iv:
+                mShowView = ulphotosP3Iv;
+                mCount = BANKFRONT;
+                takePhoto(mMobile + "_bankfront");
+                break;
+            case R.id.ulphotos_p4_iv:
+                mShowView = ulphotosP4Iv;
+                mCount = HANDFRONT;
+                takePhoto(mMobile + "_idcardwithbody");
+                break;
+            case R.id.ulphotos_confirm_bt:
+                boolean flag = false;
+                for (int i = 0; i < imgFlag.length; i++) {
+                    String temp = imgFlag[i];
+                    if (AppTools.isEmpty(temp) || !temp.equals("00")) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) {
+                    showToast("图片未全部上传成功，请重新提交上传失败的图片");
+                } else {
+                    AppUser.getInstance().setStatus("00");
+                    finish();
+                }
+                break;
+        }
+    }
+
+    /**
+     * 根据filename，成功或者失败，在相应的imageview显示对应的图片
+     *
+     * @param file_type 图片名
+     * @param success   识别成功/识别失败/上传失败
+     */
+    public void showphotos(String file_type, String success) {
+        if (file_type.equals("00")) {
+            if (success.equals("success")) {
+                ILFactory.getLoader().loadNet(ulphotosP1Iv, imgPath[0], ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_CENTER), false);
+
+                imgFlag[0] = "00";
+            } else if (success.equals("fail")) {
+                ILFactory.getLoader().loadAssets(ulphotosP1Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[0] = "01";
+            } else if (success.equals("error")) {
+                ILFactory.getLoader().loadAssets(ulphotosP1Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[0] = "01";
+            }
+        } else if (file_type.equals("01")) {
+            if (success.equals("success")) {
+                ILFactory.getLoader().loadNet(ulphotosP2Iv, imgPath[1], ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_CENTER), false);
+                imgFlag[1] = "00";
+            } else if (success.equals("fail")) {
+                ILFactory.getLoader().loadAssets(ulphotosP2Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[1] = "01";
+            } else if (success.equals("error")) {
+                ILFactory.getLoader().loadAssets(ulphotosP2Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[1] = "01";
+            }
+        } else if (file_type.equals("02")) {
+            if (success.equals("success")) {
+                ILFactory.getLoader().loadNet(ulphotosP3Iv, imgPath[2], ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_CENTER), false);
+                imgFlag[2] = "00";
+            } else if (success.equals("fail")) {
+                ILFactory.getLoader().loadAssets(ulphotosP3Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[2] = "01";
+            } else if (success.equals("error")) {
+                ILFactory.getLoader().loadAssets(ulphotosP3Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[2] = "01";
+            }
+        } else if (file_type.equals("03")) {
+            if (success.equals("success")) {
+                ILFactory.getLoader().loadNet(ulphotosP4Iv, imgPath[3], ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_CENTER), false);
+                imgFlag[3] = "00";
+            } else if (success.equals("fail")) {
+                ILFactory.getLoader().loadAssets(ulphotosP4Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[3] = "01";
+            } else if (success.equals("error")) {
+                ILFactory.getLoader().loadAssets(ulphotosP4Iv, "uploadfail.png", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                imgFlag[3] = "01";
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (fileUtill.hasSdcard()) {
+                mFilePath = rootPath + mFilename;
+                Bitmap b = ImgUtils.getimage(mFilePath);
+                System.out.println("-----b:" + b);
+                if (b != null) {
+                    writeBitmap(b);
+//                    mShowView.setImageResource(R.mipmap.empty_photo);
+                    ILFactory.getLoader().loadAssets(mShowView, "loading.gif", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+                } else {
+                    return;
+                }
+
+                switch (mCount) {
+                    case IDCARDFRONT:
+                        imgPath[0] = mFilePath;
+                        getP().uploadPhoto(mFilePath, "00", mMobile);
+                        break;
+                    case IDCARDBACK:
+                        imgPath[1] = mFilePath;
+                        getP().uploadPhoto(mFilePath, "01", mMobile);
+                        break;
+                    case BANKFRONT:
+                        imgPath[2] = mFilePath;
+                        getP().uploadPhoto(mFilePath, "02", mMobile);
+                        break;
+                    case HANDFRONT:
+                        imgPath[3] = mFilePath;
+                        getP().uploadPhoto(mFilePath, "03", mMobile);
+                        break;
+
+                    default:
+                        break;
+                }
+            } else {
+                showToast("请检查是否有外置存储卡");
+            }
+        } else if (requestCode == 2) {
+            try {
+                String picturePath = GetImagePath.getPath(context, data.getData());  //获取照片路径
+                Bitmap b = ImgUtils.getimage(picturePath);
+                if (fileUtill.hasSdcard()) {
+                    mFilePath = rootPath + mFilename;
+                    if (b != null) {
+                        writeBitmap(b);
+                        ILFactory.getLoader().loadAssets(mShowView, "loading.gif", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY));
+
+//                        DispalyImgUtil.getInstance().DispalyLocallImgByCache(mShowView, "assets://loading.gif", true);
+
+                    } else {
+                        return;
+                    }
+                    switch (mCount) {
+                        case IDCARDFRONT:
+                            imgPath[0] = mFilePath;
+                            getP().uploadPhoto(mFilePath, "00", mMobile);
+                            break;
+                        case IDCARDBACK:
+                            imgPath[1] = mFilePath;
+                            getP().uploadPhoto(mFilePath, "01", mMobile);
+                            break;
+                        case BANKFRONT:
+                            imgPath[2] = mFilePath;
+                            getP().uploadPhoto(mFilePath, "02", mMobile);
+                            break;
+
+                        case HANDFRONT:
+                            imgPath[3] = mFilePath;
+                            getP().uploadPhoto(mFilePath, "03", mMobile);
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            } catch (Exception e) {
+                // TODO Auto-generatedcatch block
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 保存图片
+     *
+     * @param b Bitmap
+     * @return true成功 false失败
+     */
+    private boolean writeBitmap(Bitmap b) {
+        ByteArrayOutputStream by = new ByteArrayOutputStream();
+        b.compress(Bitmap.CompressFormat.JPEG, 80, by);
+        byte[] stream = by.toByteArray();
+        return fileUtill.writeToSdcard(stream, rootPath, mFilename);
+    }
+
+    /**
+     * 底部对话框
+     *
+     * @param fileName 图片名称
+     */
+    private void choosePicture(final String fileName) {
+        BottomDialog bottomDailog = new BottomDialog(this);
+        ArrayList<ChooseItem> imgArray = new ArrayList<>();
+        imgArray.add(new ChooseItem("拍照", null));
+        imgArray.add(new ChooseItem("相册", null));
+        bottomDailog.showAlert(null, imgArray, new BottomDialog.OnAlertSelectId() {
+
+            @Override
+            public void onClick(int whichButton) {
+                if (whichButton == 0) {
+                    takePhoto(fileName);
+                } else if (whichButton == 1) {
+                    gallery(fileName);
+                }
+            }
+        });
+    }
+
+    /**
+     * 拍照选取图片
+     *
+     * @param fileName
+     */
+    private void takePhoto(final String fileName) {
+        getRxPermissions()
+                .request(Manifest.permission.CAMERA)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean granted) {
+                        if (granted) {
+                            //TODO 许可
+                            if (Build.VERSION.SDK_INT < 24) {
+                                mFilename = fileName + ".jpg";
+                                String path = rootPath;
+                                File dir = new File(path);
+                                if (!dir.exists()) {
+                                    dir.mkdirs();
+                                }
+                                File file = new File(rootPath,
+                                        mFilename);
+                                if (file.exists()) {
+                                    file.delete();
+                                }
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                                startActivityForResult(intent, 1);
+                            } else {
+                                mFilename = fileName + ".jpg";
+                                String path = rootPath;
+                                File dir = new File(path);
+                                if (!dir.exists()) {
+                                    dir.mkdirs();
+                                }
+                                File file = new File(rootPath,
+                                        mFilename);
+                                if (file.exists()) {
+                                    file.delete();
+                                }
+                                Uri imageUri = FileProvider.getUriForFile(context, AppKit.getpackageNames(context) + ".fileprovider", file);//通过FileProvider创建一个content类型的Uri
+                                Intent intent = new Intent();
+                                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); //添加这一句表示对目标应用临时授权该Uri所代表的文件
+                                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);//设置Action为拍照
+                                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);//将拍取的照片保存到指定URI
+                                startActivityForResult(intent, 1);
+                            }
+
+                        } else {
+                            //TODO 未许可
+                            showToast("权限未获取");
+                        }
+                    }
+                });
+
+    }
+
+    /**
+     * 从相册选取图片
+     *
+     * @param fileName 图片名称
+     */
+    private void gallery(final String fileName) {
+        getRxPermissions()
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean granted) {
+                        if (granted) {
+                            //TODO 许可
+                            Intent intent = new Intent();
+                            mFilename = fileName + ".jpg";
+                            String path = rootPath;
+                            File dir = new File(path);
+                            if (!dir.exists()) {
+                                dir.mkdirs();
+                            }
+                            File file = new File(rootPath,
+                                    mFilename);
+                            if (file.exists()) {
+                                file.delete();
+                            }
+                            intent.setAction(Intent.ACTION_PICK);//Pick an item from the data
+                            intent.setType("image/*");//从所有图片中进行选择
+                            startActivityForResult(intent, 2);
+
+                        } else {
+                            //TODO 未许可
+                            showToast("权限未获取");
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 检查本地图片是否存在，存在的话即显示
+     *
+     * @param filename  图片名称
+     * @param imageView imageView
+     * @param type      类型
+     */
+    private void checkfile(String filename, ImageView imageView, int type) {
+        String path = rootPath;
+        File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File file = new File(rootPath,
+                filename + ".jpg");
+        if (file.exists()) {
+            ILFactory.getLoader().loadNet(imageView, path + filename + ".jpg", ILoader.Options.defaultOptions().scaleType(ImageView.ScaleType.FIT_XY), false);
+            switch (type) {
+                case 0:
+                    imgPath[0] = path + filename + ".jpg";
+                    break;
+                case 1:
+                    imgPath[1] = path + filename + ".jpg";
+                    break;
+                case 2:
+                    imgPath[2] = path + filename + ".jpg";
+                    break;
+                case 3:
+                    imgPath[3] = path + filename + ".jpg";
+                    break;
+                default:
+                    break;
+
+            }
+        }
+
+    }
+
+}
